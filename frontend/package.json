@@ -1,10 +1,11 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:gh-pages": "ng build --output-path ../docs --base-href /mi-web-technologien-beiboot-ss2022-mweiershaeuser/ && cd ../docs && copy index.html 404.html",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watch",
