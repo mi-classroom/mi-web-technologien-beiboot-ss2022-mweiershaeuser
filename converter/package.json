@@ -1,0 +1,15 @@
+{
+  "name": "converter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "author": "Melvin Weiershäuser",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "devDependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1"
+  }
+}
