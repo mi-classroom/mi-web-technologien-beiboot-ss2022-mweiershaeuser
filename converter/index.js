@@ -22,6 +22,7 @@ artworks.items.forEach((artwork) => {
       category: medium,
       owner: artwork.repository,
       preview: artwork.images.overall.images[0].sizes.medium.src,
+      sortingId: artwork.sortingNumber,
     };
     masterpieces.push(masterpiece);
   }

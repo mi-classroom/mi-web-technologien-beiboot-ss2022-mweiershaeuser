@@ -26,6 +26,9 @@
     },
     "preview": {
       "type": "string"
+    },
+    "sortingId": {
+      "type": "string"
     }
   }
 }
