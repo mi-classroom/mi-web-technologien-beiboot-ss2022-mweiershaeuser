@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './core/container/container.component';
 import { ContentComponent } from './core/content/content.component';
-import { FooterComponent } from './core/footer/footer.component';
 import { HeaderComponent } from './core/header/header.component';
 
 describe('AppComponent', () => {
@@ -15,7 +14,6 @@ describe('AppComponent', () => {
         ContainerComponent,
         HeaderComponent,
         ContentComponent,
-        FooterComponent,
       ],
     }).compileComponents();
   });

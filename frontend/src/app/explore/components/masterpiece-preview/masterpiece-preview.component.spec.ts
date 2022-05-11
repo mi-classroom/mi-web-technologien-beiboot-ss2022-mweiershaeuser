@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FooterComponent } from './footer.component';
+import { MasterpiecePreviewComponent } from './masterpiece-preview.component';
 
-describe('FooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
+describe('MasterpiecePreviewComponent', () => {
+  let component: MasterpiecePreviewComponent;
+  let fixture: ComponentFixture<MasterpiecePreviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [ MasterpiecePreviewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
+    fixture = TestBed.createComponent(MasterpiecePreviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

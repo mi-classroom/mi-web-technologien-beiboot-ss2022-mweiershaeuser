@@ -1,1 +1,20 @@
-<p>explore works!</p>
+<div>
+  <input type="text" [(ngModel)]="endpoint" />
+  <button (click)="updateEndpoint()">Change endpoint</button>
+</div>
+<div>
+  <input type="text" [(ngModel)]="apiToken" />
+  <button (click)="updateApiToken()">Change API token</button>
+</div>
+<div *ngIf="!error; else errorMessage">
+  <app-masterpiece-preview
+    *ngFor="let artwork of artworks"
+    [artwork]="artwork"
+  ></app-masterpiece-preview>
+</div>
+<ng-template #errorMessage>
+  <p>
+    An error occured. Please check your endpoint and API token as well as your
+    network connection.
+  </p>
+</ng-template>
