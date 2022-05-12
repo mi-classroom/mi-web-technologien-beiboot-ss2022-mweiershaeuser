@@ -29,7 +29,7 @@ Angular wurde gewählt, weil es eine solide Grundlage bietet und umfangreiche Hi
 
 ### HTML, CSS, Vanilla JS
 
-- Gut, weil seimpler Basis-Tech-Stack.
+- Gut, weil simpler Basis-Tech-Stack.
 - Gut, weil kompatibel mit allem.
 - Schlecht, weil komplexerer Code schnell unübersichtlich wird.
 - Schlecht, weil Entwicklung schnell anstrengend wird.
