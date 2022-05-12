@@ -42,4 +42,4 @@ Die Entscheidung fiel auf Strapi. Einerseits nimmt es einem viel Implementations
 
 ## Links
 
-- {Link type} {Link to ADR}
+- Der ADR folgt auf den [ADR zum Datenumgang](0002-datenumgang.md)
