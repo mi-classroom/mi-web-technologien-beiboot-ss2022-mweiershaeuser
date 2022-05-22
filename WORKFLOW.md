@@ -1,6 +1,6 @@
 # Workflow
 
-Das vorliegende Dokument dokumentiert den im Rahmen von [Aufgabe 2](https://github.com/mi-classroom/mi-master-wt-beiboot-2022/issues/2) definierten Workflow für die Bearbeitung der im Beiboot Projekt gestellten Aufgaben sowie für den Review-Prozess, welcher im gegebenen Review Team des Beiboot Projektes durchgeführt wird.
+Das vorliegende Dokument dokumentiert den im Rahmen von [Aufgabe 2](https://github.com/mi-classroom/mi-web-technologien-beiboot-ss2022-mweiershaeuser/milestone/1) definierten Workflow für die Bearbeitung der im Beiboot Projekt gestellten Aufgaben sowie für den Review-Prozess, welcher im gegebenen Review Team des Beiboot Projektes durchgeführt wird.
 
 ## Rollen
 
@@ -9,7 +9,7 @@ Das vorliegende Dokument dokumentiert den im Rahmen von [Aufgabe 2](https://gith
 
 ## Verfassen von Issues
 
-Das Beiboot Projekt umfasst regelmäßig gestellte Aufgaben. Diese lassen sich in der Regel in zusammengehörige Teilaufgaben wie die Implementation und Dokumentation bestimmter Features, Prozesse oder Entscheidungen unterteilen. Für jede angegangene Teilaufgabe wird ein Issue im Repository angelegt.
+Das Beiboot Projekt umfasst regelmäßig gestellte Aufgaben. Zu diesen Aufgaben ist durch den Autor ein Milestone anzulegen. Die Aufgaben lassen sich in der Regel in zusammengehörige Teilaufgaben wie die Implementation und Dokumentation bestimmter Features, Prozesse oder Entscheidungen unterteilen. Für jede angegangene Teilaufgabe wird ein Issue im Repository angelegt. Jedes Issue ist einer Aufgabe durch Verknüpfung mit dem entsprechenden Milestone zuzuordnen.
 
 ## Project Board
 
@@ -55,7 +55,7 @@ Für jedes Issue wird ein Branch angelegt, auf dem an diesem Issue gearbeitet wi
 
 ## Issues zur Review bereitstellen
 
-Ist die Arbeit an einem Issue abgeschlossen, wird ein Pull Request mit der Anfrage zum Merge vom Issue-Branch in den main Branch eröffnet. Im Namen des Pull Requests sollte die Issue-Nummer angegeben werden, damit der Pull Request durch GitHub entsprechend verknüpft wird. Außerdem ist der Pull-Request dem Project Board hinzuzufügen. Die Reviewer werden darüber informiert, dass ein Pull Request eröffnet wurde.
+Ist die Arbeit an einem Issue abgeschlossen, wird ein Pull Request mit der Anfrage zum Merge vom Issue-Branch in den main Branch eröffnet. Im Namen des Pull Requests sollte die Issue-Nummer angegeben werden, damit der Pull Request durch GitHub entsprechend verknüpft wird. Außerdem ist der Pull-Request dem Project Board hinzuzufügen und einem Milestone zuzuordnen. Die Reviewer werden darüber informiert, dass ein Pull Request eröffnet wurde.
 
 ## Review
 
