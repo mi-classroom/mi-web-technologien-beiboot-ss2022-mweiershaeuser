@@ -2,10 +2,16 @@
 
 Willkommen im Beiboot-Repo! Dieses Repository beinhaltet ein begleitendes Projekt, welches im Modul Web Technologien des Studiengangs Medieninformatik (Master) mit Schwerpunkt Weaving the Web im Sommersemester 2022 an der Technischen Hochschule Köln entwickelt wird. Weitere Informationen können der [Beiboot Beschreibung](#beiboot-beschreibung) sowie den [Issues](https://github.com/mi-classroom/mi-master-wt-beiboot-2022/issues) des Projekts entnommen werden.
 
-## Team
+## Projektorganisation
+
+**Team**
 
 - Autor: [Melvin Weiershäuser](https://github.com/mweiershaeuser)
-- Reviewer: ?
+- Reviewer: [Luca Stamos](https://github.com/LokiGodofBattle), [Stefan Steinhauer](https://github.com/pfropfen)
+
+**Workflow**
+
+Der für das Projekt genutzte Workflow ist [hier](WORKFLOW.md) dokumentiert.
 
 ## Getting started
 

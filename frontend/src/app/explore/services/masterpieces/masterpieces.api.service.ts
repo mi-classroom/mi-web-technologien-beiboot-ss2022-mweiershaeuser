@@ -1,24 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { LoginService } from 'src/app/login/services/login/login.service';
+import { environment } from 'src/environments/environment';
 import Artwork from '../../models/artwork.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MasterpiecesApiService {
-  baseUrl$ = new BehaviorSubject<string>('http://localhost:1337/api');
-  apiToken$ = new BehaviorSubject<string>('');
+  baseUrl: string = environment.baseUrl;
+  accessToken: string = '';
 
-  baseUrl: string = '';
-  apiToken: string = '';
-
-  constructor(private http: HttpClient) {
-    this.baseUrl$.subscribe((bU) => {
-      this.baseUrl = bU;
-    });
-    this.apiToken$.subscribe((aT) => {
-      this.apiToken = aT;
+  constructor(private http: HttpClient, private loginService: LoginService) {
+    this.loginService.hasAccessToken.subscribe({
+      next: (accessToken) => {
+        if (accessToken) {
+          this.accessToken = accessToken;
+        }
+      },
     });
   }
 
@@ -27,7 +27,7 @@ export class MasterpiecesApiService {
       .get<{ data: Array<{ attributes: Artwork }> }>(
         `${this.baseUrl}/artworks?sort[0]=sortingId&pagination[page]=1&pagination[pageSize]=200`,
         {
-          headers: { Authorization: `Bearer ${this.apiToken}` },
+          headers: { Authorization: `Bearer ${this.accessToken}` },
         }
       )
       .pipe(

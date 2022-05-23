@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Login</h2>
+  <div class="mb-3">
+    <label for="username" class="form-label">Benutzername</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      [(ngModel)]="username"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Passwort</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      [(ngModel)]="password"
+    />
+  </div>
+  <div *ngIf="error" class="alert alert-danger">
+    Benutzername oder Passwort sind falsch.
+  </div>
+  <button class="btn btn-primary" (click)="login()">Anmelden</button>
+</div>

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from './login/guards/login/login.guard';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -8,9 +10,14 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
     path: 'explore',
     loadChildren: () =>
       import('./explore/explore.module').then((m) => m.ExploreModule),
+    canActivate: [LoginGuard],
   },
   {
     path: '**',
