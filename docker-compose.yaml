@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  frontend:
+    image: beiboot/frontend
+    build:
+      context: ./frontend
+      dockerfile: frontend.Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+
+  backend:
+    image: beiboot/backend
+    build:
+      context: ./backend
+      dockerfile: backend.Dockerfile
+    restart: always
+    ports:
+      - "1337:1337"
+    volumes:
+      - type: volume
+        source: beiboot-db
+        target: /beiboot-backend/.tmp
+
+volumes:
+  beiboot-db:
