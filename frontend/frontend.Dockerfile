@@ -10,3 +10,4 @@ FROM nginx
 ARG FRONTEND_NGINX_CONFIGURATION_FILE=nginx.conf
 COPY ${FRONTEND_NGINX_CONFIGURATION_FILE} /etc/nginx/nginx.conf
 COPY --from=build /beiboot-frontend/dist/frontend /usr/share/nginx/html
+EXPOSE 80
