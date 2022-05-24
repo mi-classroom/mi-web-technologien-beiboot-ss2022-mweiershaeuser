@@ -158,7 +158,7 @@ Committe und pushe anschließend den generierten docs Ordner auf dem gh-pages Br
 
 ### Backend
 
-Das Backend ist derzeit noch nicht deployed. Zur Nutzung des deployeten Frontends kann das lokale Backend genuzt werden, indem die lokale URL (http://localhost:1337/api) sowie ein API Token im Frontend angegeben werden.
+Das Backend ist derzeit noch nicht deployed. Zur Nutzung des deployeten Frontends kann das lokale Backend genuzt werden, es wie unter [Getting started](#getting-started) beschrieben lokal aufgesetzt wird.
 
 ## Dokumentation
 
