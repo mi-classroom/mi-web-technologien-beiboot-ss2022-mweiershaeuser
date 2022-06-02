@@ -5,6 +5,8 @@ services:
     build:
       context: ./frontend
       dockerfile: frontend.Dockerfile
+      args:
+        - FRONTEND_BUILD_COMMAND=build:local
     restart: always
     ports:
       - "80:80"
