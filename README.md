@@ -2,6 +2,16 @@
 
 Willkommen im Beiboot-Repo! Dieses Repository beinhaltet ein begleitendes Projekt, welches im Modul Web Technologien des Studiengangs Medieninformatik (Master) mit Schwerpunkt Weaving the Web im Sommersemester 2022 an der Technischen Hochschule Köln entwickelt wird. Weitere Informationen können der [Beiboot Beschreibung](#beiboot-beschreibung) sowie den [Issues](https://github.com/mi-classroom/mi-master-wt-beiboot-2022/issues) des Projekts entnommen werden.
 
+**Übersicht**
+
+- [Projektorganisation](#projektorganisation)
+- [Getting started](#getting-started)
+- [Deployment](#deployment)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+- [Dokumentation](#dokumentation)
+- [Beiboot Beschreibung](#beiboot-beschreibung)
+
 ## Projektorganisation
 
 **Team**
@@ -144,9 +154,16 @@ Da der Converter einmalig ausgeführt werden muss, wird das API-Token nun nicht 
 
 ### Frontend
 
-Erreichbar unter: [https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser/explore](https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser/explore)
+Erreichbar unter: [https://beiboot.melvinweiershaeuser.de](https://beiboot.melvinweiershaeuser.de)
 
-Das Frontend wird über GitHub Pages deployed. Dazu wird der Ordner [docs](frontend/docs) des Branches gh-pages genutzt.
+Zum Deployment wird das Docker-Image gebaut, auf dem Server hochgeladen und gestartet.
+
+<details>
+  <summary>Alternatives Deployment via GitHub Pages</summary>
+
+Erreichbar unter: [https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser](https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser)
+
+Das Frontend kann alternativ über GitHub Pages bereitgestellt werden. Dazu wird der Ordner [docs](frontend/docs) des Branches gh-pages genutzt.
 
 Führe folgende Schritte im Ordner [frontend](frontend) für ein Deployment durch:
 
@@ -156,9 +173,13 @@ npm run build:gh-pages
 
 Committe und pushe anschließend den generierten docs Ordner auf dem gh-pages Branch.
 
+</details>
+
 ### Backend
 
-Das Backend ist derzeit noch nicht deployed. Zur Nutzung des deployeten Frontends kann das lokale Backend genuzt werden, es wie unter [Getting started](#getting-started) beschrieben lokal aufgesetzt wird.
+Erreichbar unter: [https://beiboot-backend.melvinweiershaeuser.de](https://beiboot-backend.melvinweiershaeuser.de)
+
+Zum Deployment wird das Docker-Image gebaut, auf dem Server hochgeladen und gestartet. Anschließend wird/wurde Strapi analog zur [Anleitung für das lokalen Setup](#2-projekt-konfigurieren) konfiguriert.
 
 ## Dokumentation
 
