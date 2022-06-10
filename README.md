@@ -2,6 +2,16 @@
 
 Willkommen im Beiboot-Repo! Dieses Repository beinhaltet ein begleitendes Projekt, welches im Modul Web Technologien des Studiengangs Medieninformatik (Master) mit Schwerpunkt Weaving the Web im Sommersemester 2022 an der Technischen Hochschule Köln entwickelt wird. Weitere Informationen können der [Beiboot Beschreibung](#beiboot-beschreibung) sowie den [Issues](https://github.com/mi-classroom/mi-master-wt-beiboot-2022/issues) des Projekts entnommen werden.
 
+**Übersicht**
+
+- [Projektorganisation](#projektorganisation)
+- [Getting started](#getting-started)
+- [Deployment](#deployment)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+- [Dokumentation](#dokumentation)
+- [Beiboot Beschreibung](#beiboot-beschreibung)
+
 ## Projektorganisation
 
 **Team**
@@ -15,7 +25,39 @@ Der für das Projekt genutzte Workflow ist [hier](WORKFLOW.md) dokumentiert.
 
 ## Getting started
 
-### Frontend
+Die folgende Anleitung führt durch das lokale Starten des Projekts und gibt dabei unterschiedliche technologische Optionen.
+
+### 1. Projekt aufsetzen
+
+Das Projekt kann nun entweder in containerisierter Form via Docker oder zur lokalen Entwicklung gestartet werden.
+
+<details>
+  <summary>Docker</summary>
+
+Zum Starten mit Docker wird [Docker Desktop](https://www.docker.com/get-started/) benötigt.
+
+Führe im Projektordner folgenden Befehl aus:
+
+```bash
+docker-compose up -d
+```
+
+Anschließend erreicht du die Anwendung wie folgt:
+
+Frontend: [http://localhost](http://localhost)
+
+Backend: [http://localhost:1337/admin](http://localhost:1337/admin)
+
+Fahre nun damit fort, das [Projekt zu konfigurieren](#2-projekt-konfigurieren).
+
+</details>
+
+<details>
+  <summary>Entwicklung</summary>
+
+Für die lokale Entwicklung wird eine [Node.js-Installation](https://nodejs.org/en/) (Version 14 oder 16) mit npm benötigt.
+
+#### <u>Frontend</u>
 
 Beim Frontend handelt es sich um eine Angular Single Page Application (SPA), welche die Daten vom Backend bezieht und darstellt.
 
@@ -35,11 +77,7 @@ npm start
 
 Öffne nun den Browser unter [http://localhost:4200](http://localhost:4200).
 
-**Endpoint & API Tokens angeben**
-
-Gib im Frontend den Endpunkt des Backends sowie ein API Token mit Lesezugriff an. Führe die folgenden Schritte im Backend durch, um es zu starten und ein API Token zu erhalten.
-
-### Backend
+#### <u>Backend</u>
 
 Das Backend ist ein Strapi-Backend, welches die Daten über eine flexible Schnittstelle bereitstellt.
 
@@ -57,19 +95,29 @@ npm install
 npm run develop
 ```
 
-**Strapi einrichten**
+Die Strapi Admin-Oberfläche ist nun im Browser unter [http://localhost:1337/admin](http://localhost:1337/admin) erreichbar.
 
-Öffne im Browser die URL [http://localhost:1337/admin](http://localhost:1337/admin). Lege dort einen Account an, um Strapi verwalten zu können.
+</details>
 
-**API Tokens erzeugen**
+### 2. Projekt konfigurieren
 
-Öffne die Verwaltung der [API Tokens](http://localhost:1337/admin/settings/api-tokens?sort=name:ASC) und lege ein Token mit Lesezugriff für die Webseite und ein Token mit vollem Zugriff für den Converter an. Speichere dir die Tokens sicher ab.
+Das Projekt sollte nun lokal gestartet sein. Damit die Anwendung genutzt werden kann, müssen jedoch einige Konfigurationen eingerichtet und Daten transformiert werden.
 
-### Converter
+#### <u>Strapi einrichten</u>
 
-Der Converter dient dazu, relevante Daten aus der vorgegebenen JSON-Datei zu extrahieren und diese im vorgesehenen Datenformat an das Backend zu übergeben.
+Öffne im Browser die URL [http://localhost:1337/admin](http://localhost:1337/admin). Lege dort einen Admin-Account an, um Strapi verwalten zu können. Anschließend öffnet sich das Dashboard.
 
-Führe im Ordner [converter](converter) folgende Schritte aus.
+Navigiere nun zum Punkt "Settings" und wähle unter "Users & Permissions Plugin" den Reiter "Roles" aus. Klicke dort auf die Role "Authenticated". Unter Permissions klappst du nun die Einstellungen für "Artwork" auf und setzt ein Häkchen bei "find" und "findOne". Speichere dies über den Button "Save".
+
+Gehe nun zum "Content Manager" und wähle den Collection Type "User". Lege einen neuen User an und gib ihm die Rolle "Authenticated". Merke dir die Zugangsdaten: Mit diesen kannst du dich später in der Anwendung einloggen und auf die Meisterwerke zugreifen!
+
+#### <u>Converter ausführen</u>
+
+Der Converter dient dazu, relevante Daten aus der vorgegebenen JSON-Datei zu extrahieren und diese im vorgesehenen Datenformat an das Backend zu übergeben. Dadurch erleichtert er das Überführen der JSON-Datei in die Datenbank. Um den Converter nutzen zu können, wird eine Node.js-Installation mit npm benötigt. Alternativ lassen sich für das lokale Testen manuelle Einträge anlegen.
+
+Lege zur Nutzung des Converters über die Strapi Admin-Oberfläche temporär ein API-Token an, um den Converter in Strapi zu authentisieren. Wähle dazu in den Einstellungen unter "Global Settings" den Reiter "API Tokens" und lege ein neues Token (Name egal) an, welches den Token type "Full access" erhält. Speichere und lege dir das resultierte Token sicher ab. Du wirst es noch brauchen!
+
+Führe nun im Ordner [converter](converter) folgende Schritte aus.
 
 **Abhängigkeiten installieren**
 
@@ -83,7 +131,7 @@ Beschaffe die vorgegebene JSON-Datei und füge sie in diesem Ordner ein. Sie sol
 
 **Environment konfigurieren**
 
-Lege eine Datei ".env" an und setze die API-URL des Ziel-Backends (z. B. "http://localhost:1337") sowie ein API-Token. Auch diese Datei sollte bei der Versionierung von Git ignoriert werden.
+Lege eine Datei ".env" an und setze die API-URL des Ziel-Backends (z. B. "http://localhost:1337") sowie das zuvor erzeugte API-Token. Auch diese Datei sollte bei der Versionierung von Git ignoriert werden.
 
 ```
 BASE_URL="http://localhost:1337"
@@ -92,19 +140,30 @@ API_TOKEN="<token>"
 
 **Converter ausführen**
 
-Stelle sicher, dass das Backend vorher gestartet und die Environment richtig konfiguriert ist. Der Converter dann die Daten und legt sie als Einträge im Backend an.
+Stelle sicher, dass das Backend vorher gestartet und die Environment richtig konfiguriert ist. Der Converter konvertiert dann die Daten und legt sie als Einträge im Backend an.
 
 ```bash
 npm start
 ```
 
+**API-Token löschen**
+
+Da der Converter einmalig ausgeführt werden muss, wird das API-Token nun nicht mehr benötigt. Aus Sicherheitsgründen empfiehlt es sich daher, dieses nun in den Strapi-Einstellungen wieder zu entfernen.
+
 ## Deployment
 
 ### Frontend
 
-Erreichbar unter: [https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser/explore](https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser/explore)
+Erreichbar unter: [https://beiboot.melvinweiershaeuser.de](https://beiboot.melvinweiershaeuser.de)
 
-Das Frontend wird über GitHub Pages deployed. Dazu wird der Ordner [docs](frontend/docs) des Branches gh-pages genutzt.
+Zum Deployment wird das Docker-Image gebaut, auf dem Server hochgeladen und gestartet.
+
+<details>
+  <summary>Alternatives Deployment via GitHub Pages</summary>
+
+Erreichbar unter: [https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser](https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser)
+
+Das Frontend kann alternativ über GitHub Pages bereitgestellt werden. Dazu wird der Ordner [docs](frontend/docs) des Branches gh-pages genutzt.
 
 Führe folgende Schritte im Ordner [frontend](frontend) für ein Deployment durch:
 
@@ -114,9 +173,13 @@ npm run build:gh-pages
 
 Committe und pushe anschließend den generierten docs Ordner auf dem gh-pages Branch.
 
+</details>
+
 ### Backend
 
-Das Backend ist derzeit noch nicht deployed. Zur Nutzung des deployeten Frontends kann das lokale Backend genuzt werden, indem die lokale URL (http://localhost:1337/api) sowie ein API Token im Frontend angegeben werden.
+Erreichbar unter: [https://beiboot-backend.melvinweiershaeuser.de](https://beiboot-backend.melvinweiershaeuser.de)
+
+Zum Deployment wird das Docker-Image gebaut, auf dem Server hochgeladen und gestartet. Anschließend wird/wurde Strapi analog zur [Anleitung für das lokalen Setup](#2-projekt-konfigurieren) konfiguriert.
 
 ## Dokumentation
 

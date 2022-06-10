@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class LoginService {
   public hasAccessToken = new ReplaySubject<string | null>(1);
 
-  private readonly baseUrl = environment.baseUrl;
+  private readonly baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
     this.hasAccessToken.next(sessionStorage.getItem(accessTokenKey));

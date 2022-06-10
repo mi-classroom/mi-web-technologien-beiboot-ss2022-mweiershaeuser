@@ -8,6 +8,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:local": "ng build --configuration local",
     "build:gh-pages": "ng build --output-path ../docs --base-href /mi-web-technologien-beiboot-ss2022-mweiershaeuser/ && cd ../docs && copy index.html 404.html",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
