@@ -9,7 +9,7 @@ import Artwork from '../../models/artwork.model';
   providedIn: 'root',
 })
 export class MasterpiecesApiService {
-  baseUrl: string = environment.baseUrl;
+  baseUrl: string = environment.apiUrl;
   accessToken: string = '';
 
   constructor(private http: HttpClient, private loginService: LoginService) {
