@@ -1,9 +1,11 @@
-<div *ngIf="error" class="alert alert-danger">
-  Es ist ein Fehler aufgetreten. Bitte überprüfe Netzwerkverbindung und
-  Endpunkt.
-</div>
+<div class="flex-grow-1 header-space">
+  <div *ngIf="error" class="alert alert-danger">
+    Es ist ein Fehler aufgetreten. Bitte überprüfe Netzwerkverbindung und
+    Endpunkt.
+  </div>
 
-<app-masterpiece-preview
-  *ngFor="let artwork of artworks"
-  [artwork]="artwork"
-></app-masterpiece-preview>
+  <app-masterpiece-preview
+    *ngFor="let artwork of artworks"
+    [artwork]="artwork"
+  ></app-masterpiece-preview>
+</div>
