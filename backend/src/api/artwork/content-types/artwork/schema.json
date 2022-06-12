@@ -16,7 +16,7 @@
       "type": "string"
     },
     "date": {
-      "type": "string"
+      "type": "integer"
     },
     "category": {
       "type": "string"
@@ -29,6 +29,12 @@
     },
     "sortingId": {
       "type": "string"
+    },
+    "width": {
+      "type": "decimal"
+    },
+    "height": {
+      "type": "decimal"
     }
   }
 }

@@ -41,6 +41,8 @@ export class MasterpiecesApiService {
               owner: dataObject.attributes.owner,
               preview: dataObject.attributes.preview,
               sortingId: dataObject.attributes.sortingId,
+              width: dataObject.attributes.width,
+              height: dataObject.attributes.height,
             });
           });
           return result;
