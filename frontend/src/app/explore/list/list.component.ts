@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
 
   getMasterpieces() {
     this.masterpieceApiService
-      .getMasterpieces()
+      .getMasterpieces(['sortingId'])
       .pipe(take(1))
       .subscribe({
         next: (artworks) => {

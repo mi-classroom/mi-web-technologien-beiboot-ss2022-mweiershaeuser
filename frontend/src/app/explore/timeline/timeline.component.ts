@@ -21,7 +21,7 @@ export class TimelineComponent implements OnInit {
 
   getMasterpieces() {
     this.masterpieceApiService
-      .getMasterpieces()
+      .getMasterpieces(['date'])
       .pipe(take(1))
       .subscribe({
         next: (artworks) => {
