@@ -4,17 +4,26 @@
 
     <ngt-ambient-light></ngt-ambient-light>
 
-    <ngt-mesh [position]="[0, 0, -50]">
-      <ngt-box-geometry [args]="[0.01, 0.01, 110]"></ngt-box-geometry>
+    <ngt-mesh [position]="[0, -1, (artworks.length * 5 + 10) / -2]">
+      <ngt-box-geometry
+        [args]="[0.01, 0.01, artworks.length * 5 + 20]"
+      ></ngt-box-geometry>
       <ngt-mesh-standard-material></ngt-mesh-standard-material>
     </ngt-mesh>
 
     <app-masterpiece
       *ngFor="let artwork of artworks; let i = index"
       [artwork]="artwork"
-      [position]="[0, 0, -i]"
+      [position]="[
+        artwork.width / 100 / 2,
+        artwork.height / 100 / 2 - 1,
+        -i * 5
+      ]"
     ></app-masterpiece>
 
-    <ngt-soba-orbit-controls></ngt-soba-orbit-controls>
+    <ngt-soba-first-person-controls
+      [activeLook]="false"
+      [movementSpeed]="20"
+    ></ngt-soba-first-person-controls>
   </ngt-canvas>
 </div>

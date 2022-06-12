@@ -12,7 +12,7 @@ import {
   NgtPlaneGeometryModule,
 } from '@angular-three/core/geometries';
 import { NgtMeshStandardMaterialModule } from '@angular-three/core/materials';
-import { NgtSobaOrbitControlsModule } from '@angular-three/soba/controls';
+import { NgtSobaFirstPersonControlsModule } from '@angular-three/soba/controls';
 import { NgtCanvasTextureModule } from '@angular-three/core/textures';
 import { MasterpieceComponent } from './components/masterpiece/masterpiece.component';
 
@@ -29,7 +29,7 @@ import { MasterpieceComponent } from './components/masterpiece/masterpiece.compo
     NgtPlaneGeometryModule,
     NgtMeshStandardMaterialModule,
     NgtCanvasTextureModule,
-    NgtSobaOrbitControlsModule,
+    NgtSobaFirstPersonControlsModule,
   ],
 })
 export class TimelineModule {}

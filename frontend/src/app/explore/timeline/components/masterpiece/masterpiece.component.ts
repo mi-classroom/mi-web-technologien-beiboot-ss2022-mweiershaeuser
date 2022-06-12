@@ -9,8 +9,8 @@ import { FrontSide, BackSide } from 'three';
   styleUrls: ['./masterpiece.component.scss'],
 })
 export class MasterpieceComponent implements OnInit {
-  @Input() position?: NgtVector3;
-  @Input() artwork?: Artwork;
+  @Input() position!: NgtVector3;
+  @Input() artwork!: Artwork;
 
   readonly front = FrontSide;
   readonly back = BackSide;
