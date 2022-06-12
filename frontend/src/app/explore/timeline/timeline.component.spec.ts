@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MasterpiecesApiService } from '../services/masterpieces/masterpieces.api.service';
+import { MasterpiecesApiServiceMock } from '../services/masterpieces/masterpieces.api.service.mock';
 
 import { TimelineComponent } from './timeline.component';
 
@@ -8,9 +10,14 @@ describe('TimelineComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimelineComponent ]
-    })
-    .compileComponents();
+      declarations: [TimelineComponent],
+      providers: [
+        {
+          provide: MasterpiecesApiService,
+          useClass: MasterpiecesApiServiceMock,
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
