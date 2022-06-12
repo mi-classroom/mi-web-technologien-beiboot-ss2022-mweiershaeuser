@@ -4,7 +4,10 @@
 
     <ngt-ambient-light></ngt-ambient-light>
 
-    <ngt-line></ngt-line>
+    <ngt-mesh [position]="[0, 0, -50]">
+      <ngt-box-geometry [args]="[0.01, 0.01, 110]"></ngt-box-geometry>
+      <ngt-mesh-standard-material></ngt-mesh-standard-material>
+    </ngt-mesh>
 
     <app-masterpiece
       *ngFor="let artwork of artworks; let i = index"

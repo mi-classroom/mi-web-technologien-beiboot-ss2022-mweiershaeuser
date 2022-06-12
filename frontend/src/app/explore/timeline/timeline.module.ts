@@ -6,17 +6,12 @@ import { TimelineComponent } from './timeline.component';
 import { NgtCanvasModule } from '@angular-three/core';
 import { NgtColorAttributeModule } from '@angular-three/core/attributes';
 import { NgtAmbientLightModule } from '@angular-three/core/lights';
-import { NgtLineModule } from '@angular-three/core/lines';
 import { NgtMeshModule } from '@angular-three/core/meshes';
 import {
   NgtBoxGeometryModule,
   NgtPlaneGeometryModule,
 } from '@angular-three/core/geometries';
-import {
-  NgtLineBasicMaterialModule,
-  NgtMeshBasicMaterialModule,
-  NgtMeshStandardMaterialModule,
-} from '@angular-three/core/materials';
+import { NgtMeshStandardMaterialModule } from '@angular-three/core/materials';
 import { NgtSobaOrbitControlsModule } from '@angular-three/soba/controls';
 import { NgtCanvasTextureModule } from '@angular-three/core/textures';
 import { MasterpieceComponent } from './components/masterpiece/masterpiece.component';
@@ -27,17 +22,14 @@ import { MasterpieceComponent } from './components/masterpiece/masterpiece.compo
     CommonModule,
     TimelineRoutingModule,
     NgtCanvasModule,
+    NgtColorAttributeModule,
     NgtAmbientLightModule,
-    NgtLineModule,
-    NgtLineBasicMaterialModule,
     NgtMeshModule,
     NgtBoxGeometryModule,
     NgtPlaneGeometryModule,
     NgtMeshStandardMaterialModule,
-    NgtMeshBasicMaterialModule,
-    NgtSobaOrbitControlsModule,
     NgtCanvasTextureModule,
-    NgtColorAttributeModule,
+    NgtSobaOrbitControlsModule,
   ],
 })
 export class TimelineModule {}
