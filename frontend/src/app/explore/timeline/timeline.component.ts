@@ -1,4 +1,3 @@
-import { NgtRenderState } from '@angular-three/core';
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import Artwork from '../models/artwork.model';
