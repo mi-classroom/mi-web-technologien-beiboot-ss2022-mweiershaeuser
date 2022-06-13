@@ -13,6 +13,7 @@ import { Texture, DoubleSide } from 'three';
 })
 export class MasterpieceComponent implements OnInit {
   @Input() position!: NgtVector3;
+  @Input() yearPosition!: NgtVector3;
   @Input() artwork!: Artwork;
 
   texture$!: Observable<Texture>;

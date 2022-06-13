@@ -13,6 +13,7 @@ import {
 } from '@angular-three/core/geometries';
 import { NgtMeshStandardMaterialModule } from '@angular-three/core/materials';
 import { NgtSobaFirstPersonControlsModule } from '@angular-three/soba/controls';
+import { NgtSobaTextModule } from '@angular-three/soba/abstractions';
 import { MasterpieceComponent } from './components/masterpiece/masterpiece.component';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { MasterpieceComponent } from './components/masterpiece/masterpiece.compo
     NgtPlaneGeometryModule,
     NgtMeshStandardMaterialModule,
     NgtSobaFirstPersonControlsModule,
+    NgtSobaTextModule,
   ],
 })
 export class TimelineModule {}
