@@ -1,27 +1,32 @@
 import { NgtVector3 } from '@angular-three/core';
+import { NgtTextureLoader } from '@angular-three/soba/loaders';
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import Artwork from 'src/app/explore/models/artwork.model';
-import { FrontSide, BackSide } from 'three';
+import { Texture, DoubleSide } from 'three';
 
 @Component({
   selector: 'app-masterpiece',
   templateUrl: './masterpiece.component.html',
   styleUrls: ['./masterpiece.component.scss'],
+  providers: [NgtTextureLoader],
 })
 export class MasterpieceComponent implements OnInit {
   @Input() position!: NgtVector3;
   @Input() artwork!: Artwork;
 
-  readonly front = FrontSide;
-  readonly back = BackSide;
+  texture$!: Observable<Texture>;
 
-  constructor() {}
+  readonly side = DoubleSide;
 
-  ngOnInit(): void {}
+  constructor(private textureLoader: NgtTextureLoader) {}
 
-  getImage(): HTMLImageElement {
-    const img = new Image();
-    img.src = this.artwork ? this.artwork.preview : '';
-    return img;
+  ngOnInit(): void {
+    this.texture$ = this.textureLoader.load(
+      this.artwork.preview.replace(
+        'imageserver-2022',
+        'data-proxy/image.php?subpath='
+      )
+    );
   }
 }

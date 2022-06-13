@@ -13,7 +13,6 @@ import {
 } from '@angular-three/core/geometries';
 import { NgtMeshStandardMaterialModule } from '@angular-three/core/materials';
 import { NgtSobaFirstPersonControlsModule } from '@angular-three/soba/controls';
-import { NgtCanvasTextureModule } from '@angular-three/core/textures';
 import { MasterpieceComponent } from './components/masterpiece/masterpiece.component';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { MasterpieceComponent } from './components/masterpiece/masterpiece.compo
     NgtBoxGeometryModule,
     NgtPlaneGeometryModule,
     NgtMeshStandardMaterialModule,
-    NgtCanvasTextureModule,
     NgtSobaFirstPersonControlsModule,
   ],
 })

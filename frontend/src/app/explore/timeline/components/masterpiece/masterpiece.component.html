@@ -2,17 +2,8 @@
   <ngt-plane-geometry
     [args]="[artwork.width / 100, artwork.height / 100]"
   ></ngt-plane-geometry>
-  <ngt-mesh-standard-material [side]="front"
-    ><ngt-canvas-texture [image]="getImage()"></ngt-canvas-texture
-  ></ngt-mesh-standard-material>
-</ngt-mesh>
-
-<ngt-mesh [position]="position">
-  <ngt-plane-geometry
-    [args]="[artwork.width / 100, artwork.height / 100]"
-  ></ngt-plane-geometry>
   <ngt-mesh-standard-material
-    [side]="back"
-    color="grey"
+    [side]="side"
+    [map]="texture$ | async"
   ></ngt-mesh-standard-material>
 </ngt-mesh>
