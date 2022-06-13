@@ -14,7 +14,11 @@ import { Texture, DoubleSide } from 'three';
 export class MasterpieceComponent implements OnInit {
   @Input() position!: NgtVector3;
   @Input() yearPosition!: NgtVector3;
+  @Input() infoPosition!: NgtVector3;
   @Input() artwork!: Artwork;
+
+  artworkInfo: string = '';
+  showInfo = false;
 
   texture$!: Observable<Texture>;
 
@@ -29,5 +33,12 @@ export class MasterpieceComponent implements OnInit {
         'data-proxy/image.php?subpath='
       )
     );
+
+    this.artworkInfo = `
+    Titel: ${this.artwork.title}
+    Künstler: ${this.artwork.artist}
+    Art des Werks: ${this.artwork.category}
+    Besitzer: ${this.artwork.owner}
+    `;
   }
 }
