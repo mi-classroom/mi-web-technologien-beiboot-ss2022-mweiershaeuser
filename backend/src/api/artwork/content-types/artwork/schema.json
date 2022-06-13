@@ -21,6 +21,9 @@
     "category": {
       "type": "string"
     },
+    "artist": {
+      "type": "string"
+    },
     "owner": {
       "type": "string"
     },

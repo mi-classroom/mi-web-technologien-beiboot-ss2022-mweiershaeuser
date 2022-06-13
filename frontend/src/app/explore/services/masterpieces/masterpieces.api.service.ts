@@ -42,6 +42,7 @@ export class MasterpiecesApiService {
               title: dataObject.attributes.title,
               date: dataObject.attributes.date,
               category: dataObject.attributes.category,
+              artist: dataObject.attributes.artist,
               owner: dataObject.attributes.owner,
               preview: dataObject.attributes.preview,
               sortingId: dataObject.attributes.sortingId,

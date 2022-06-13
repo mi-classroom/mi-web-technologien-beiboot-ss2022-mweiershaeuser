@@ -28,6 +28,7 @@ artworks.items.forEach((artwork) => {
       title: artwork.metadata.title,
       date: convertDateStringToDateNumber(artwork.metadata.date),
       category: medium,
+      artist: artwork.involvedPersons[0].name,
       owner: artwork.repository,
       preview: artwork.images.overall.images[0].sizes.medium.src,
       sortingId: artwork.sortingNumber,
