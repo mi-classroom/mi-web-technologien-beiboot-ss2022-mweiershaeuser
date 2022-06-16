@@ -1,0 +1,30 @@
+<ngt-soba-text
+  [position]="yearPosition"
+  [text]="artwork.date + ''"
+  color="white"
+  fontSize="0.2"
+  textAlign="right"
+></ngt-soba-text>
+
+<ngt-mesh
+  [position]="position"
+  (pointerenter)="showInfo = true"
+  (pointerleave)="showInfo = false"
+>
+  <ngt-plane-geometry
+    [args]="[artwork.width / 100, artwork.height / 100]"
+  ></ngt-plane-geometry>
+  <ngt-mesh-standard-material
+    [side]="side"
+    [map]="texture$ | async"
+  ></ngt-mesh-standard-material>
+</ngt-mesh>
+
+<ngt-soba-text
+  *ngIf="showInfo"
+  [position]="infoPosition"
+  [text]="artworkInfo"
+  color="white"
+  fontSize="0.1"
+  textAlign="left"
+></ngt-soba-text>

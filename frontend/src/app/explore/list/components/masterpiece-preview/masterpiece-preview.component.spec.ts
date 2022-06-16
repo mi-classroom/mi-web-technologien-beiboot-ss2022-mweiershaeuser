@@ -8,9 +8,8 @@ describe('MasterpiecePreviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MasterpiecePreviewComponent ]
-    })
-    .compileComponents();
+      declarations: [MasterpiecePreviewComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

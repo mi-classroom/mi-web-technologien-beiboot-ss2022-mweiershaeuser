@@ -1,0 +1,12 @@
+@import "src/variables";
+
+:host {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.header-space {
+  padding-top: $header-space;
+}
