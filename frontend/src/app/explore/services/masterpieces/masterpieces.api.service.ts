@@ -39,6 +39,7 @@ export class MasterpiecesApiService {
           let result: Artwork[] = [];
           response.data.forEach((dataObject) => {
             result.push({
+              inventoryNumber: dataObject.attributes.inventoryNumber,
               title: dataObject.attributes.title,
               date: dataObject.attributes.date,
               category: dataObject.attributes.category,
@@ -48,6 +49,7 @@ export class MasterpiecesApiService {
               sortingId: dataObject.attributes.sortingId,
               width: dataObject.attributes.width,
               height: dataObject.attributes.height,
+              relations: dataObject.attributes.relations,
             });
           });
           return result;

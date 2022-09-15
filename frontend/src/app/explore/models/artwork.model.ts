@@ -1,4 +1,7 @@
+import Relation from './relation.model';
+
 export default interface Artwork {
+  inventoryNumber: string;
   title: string;
   date: number;
   category: string;
@@ -8,4 +11,5 @@ export default interface Artwork {
   sortingId: string;
   width: number;
   height: number;
+  relations: Relation[];
 }

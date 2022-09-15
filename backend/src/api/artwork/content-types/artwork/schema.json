@@ -12,6 +12,9 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "inventoryNumber": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
     },
@@ -38,6 +41,9 @@
     },
     "height": {
       "type": "float"
+    },
+    "relations": {
+      "type": "json"
     }
   }
 }

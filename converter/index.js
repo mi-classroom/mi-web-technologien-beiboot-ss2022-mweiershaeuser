@@ -6,7 +6,7 @@ const artworks = JSON.parse(
   readFileSync("cda-paintings-2022-04-22.de.json", "utf-8")
 );
 
-const masterpieces = [];
+let masterpieces = [];
 
 artworks.items.forEach((artwork) => {
   if (artwork.isBestOf) {
@@ -25,6 +25,7 @@ artworks.items.forEach((artwork) => {
         artwork.images.overall.infos.maxDimensions.height);
 
     let masterpiece = {
+      inventoryNumber: artwork.inventoryNumber,
       title: artwork.metadata.title,
       date: convertDateStringToDateNumber(artwork.metadata.date),
       category: medium,
@@ -34,10 +35,13 @@ artworks.items.forEach((artwork) => {
       sortingId: artwork.sortingNumber,
       width,
       height,
+      relations: extractRelations(artwork.references),
     };
     masterpieces.push(masterpiece);
   }
 });
+
+masterpieces = filterMasterpieceRelations(masterpieces);
 
 masterpieces.forEach((masterpiece) => {
   axios.post(
@@ -96,4 +100,41 @@ function extractHeightFromSizeString(sizeString) {
   let removedRestOfSizeInfo = removedLabelForSize.split(" ")[0].split("-")[0];
 
   return parseFloat(removedRestOfSizeInfo.replace(",", "."), 10);
+}
+
+function extractRelations(references) {
+  let relations = [];
+  references.forEach((reference) => {
+    if (
+      reference.kind === "RELATED_IN_CONTENT_TO" ||
+      reference.kind === "SIMILAR_TO" ||
+      reference.kind === "BELONGS_TO" ||
+      reference.kind === "PART_OF_WORK"
+    ) {
+      relations.push({
+        type: reference.kind,
+        inventoryNumber: reference.inventoryNumber,
+      });
+    }
+  });
+  return relations;
+}
+
+function filterMasterpieceRelations(masterpieces) {
+  let filteredMasterpieces = [];
+  masterpieces.forEach((masterpiece) => {
+    let filteredRelations = [];
+
+    masterpiece.relations.forEach((relation) => {
+      const relationFoundInMasterpieces = masterpieces.find(
+        (m) => m.inventoryNumber === relation.inventoryNumber
+      );
+      if (relationFoundInMasterpieces) {
+        filteredRelations.push(relation);
+      }
+    });
+
+    filteredMasterpieces.push({ ...masterpiece, relations: filteredRelations });
+  });
+  return filteredMasterpieces;
 }
