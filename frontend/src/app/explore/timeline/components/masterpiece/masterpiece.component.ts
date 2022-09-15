@@ -16,6 +16,7 @@ export class MasterpieceComponent implements OnInit {
   @Input() yearPosition!: NgtVector3;
   @Input() infoPosition!: NgtVector3;
   @Input() artwork!: Artwork;
+  @Input() showYear = true;
 
   artworkInfo: string = '';
   showInfo = false;
