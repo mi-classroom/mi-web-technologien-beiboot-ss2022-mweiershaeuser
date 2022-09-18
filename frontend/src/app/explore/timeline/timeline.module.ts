@@ -15,9 +15,10 @@ import { NgtMeshStandardMaterialModule } from '@angular-three/core/materials';
 import { NgtSobaFirstPersonControlsModule } from '@angular-three/soba/controls';
 import { NgtSobaTextModule } from '@angular-three/soba/abstractions';
 import { MasterpieceComponent } from './components/masterpiece/masterpiece.component';
+import { MasterpieceDetailsComponent } from './components/masterpiece-details/masterpiece-details.component';
 
 @NgModule({
-  declarations: [TimelineComponent, MasterpieceComponent],
+  declarations: [TimelineComponent, MasterpieceComponent, MasterpieceDetailsComponent],
   imports: [
     CommonModule,
     TimelineRoutingModule,

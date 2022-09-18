@@ -15,6 +15,8 @@ export class TimelineComponent implements OnInit {
   artworks: Artwork[] = [];
   error: boolean = false;
 
+  pickedArtwork?: Artwork;
+
   constructor(private masterpieceApiService: MasterpiecesApiService) {}
 
   ngOnInit(): void {

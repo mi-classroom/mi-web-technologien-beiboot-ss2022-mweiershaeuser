@@ -1,6 +1,6 @@
 import { NgtVector3 } from '@angular-three/core';
 import { NgtTextureLoader } from '@angular-three/soba/loaders';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import Artwork from 'src/app/explore/models/artwork.model';
 import { Texture, DoubleSide } from 'three';
@@ -19,8 +19,20 @@ export class MasterpieceComponent implements OnInit {
   @Input() artwork!: Artwork;
   @Input() showYear = true;
 
-  artworkInfo: string = '';
-  showInfo = false;
+  _artworkPicked = false;
+
+  get artworkPicked(): boolean {
+    return this._artworkPicked;
+  }
+  @Input() set artworkPicked(aP: boolean) {
+    this._artworkPicked = aP;
+    if (!aP) {
+      this.artworkGrowFactor = 1;
+    }
+  }
+
+  @Output() onArtworkPicked: EventEmitter<void> = new EventEmitter();
+
   artworkGrowFactor = 1;
 
   texture$!: Observable<Texture>;
@@ -36,13 +48,21 @@ export class MasterpieceComponent implements OnInit {
         'data-proxy/image.php?subpath='
       )
     );
+  }
 
-    this.artworkInfo = `
-    Titel: ${this.artwork.title}
-    Künstler: ${this.artwork.artist}
-    Art des Werks: ${this.artwork.category}
-    Besitzer: ${this.artwork.owner}
-    `;
+  pickArtwork() {
+    this.artworkGrowFactor = 2;
+    this.onArtworkPicked.emit();
+  }
+
+  onPointerEnter() {
+    this.artworkGrowFactor = 2;
+  }
+
+  onPointerLeave() {
+    if (!this.artworkPicked) {
+      this.artworkGrowFactor = 1;
+    }
   }
 
   get positionVector() {

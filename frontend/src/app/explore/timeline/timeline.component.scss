@@ -10,3 +10,14 @@
 .header-space {
   padding-top: $header-space;
 }
+
+.details {
+  position: absolute;
+
+  top: $header-space;
+  margin-top: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+
+  width: 35%;
+}

@@ -1,0 +1,12 @@
+<div class="w-100 h-100 p-3 bg-white rounded-3">
+  <div class="d-flex justify-content-between">
+    <h2 class="fs-4">{{ artwork.title }}</h2>
+    <div class="pt-1 ps-2">
+      <i class="closeBtn bi bi-x-lg" (click)="onClose()"></i>
+    </div>
+  </div>
+  <p>Datierung: {{ artwork.date }}</p>
+  <p>Künstler: {{ artwork.artist }}</p>
+  <p>Art des Werks: {{ artwork.category }}</p>
+  <p>Besitzer: {{ artwork.owner }}</p>
+</div>

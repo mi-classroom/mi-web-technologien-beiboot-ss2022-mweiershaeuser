@@ -1,6 +1,6 @@
 <div class="flex-grow-1 d-flex flex-column header-space">
   <ngt-canvas class="flex-grow-1">
-    <ngt-color attach="background" color="black"></ngt-color>
+    <ngt-color attach="background" color="#666"></ngt-color>
 
     <ngt-ambient-light [intensity]="0.5"></ngt-ambient-light>
 
@@ -22,6 +22,8 @@
         [artwork]="artwork"
         [posZ]="-i * consts.artworkDistance"
         [showYear]="i === 0 ? true : artwork.date > artworks[i - 1].date"
+        [artworkPicked]="pickedArtwork === artwork"
+        (onArtworkPicked)="pickedArtwork = artwork"
       ></app-masterpiece>
     </ng-container>
 
@@ -30,4 +32,11 @@
       [movementSpeed]="20"
     ></ngt-soba-first-person-controls>
   </ngt-canvas>
+
+  <app-masterpiece-details
+    *ngIf="pickedArtwork"
+    class="details"
+    [artwork]="pickedArtwork"
+    (close)="pickedArtwork = undefined"
+  ></app-masterpiece-details>
 </div>
