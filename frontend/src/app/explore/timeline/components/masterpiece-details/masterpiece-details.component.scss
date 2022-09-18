@@ -1,3 +1,20 @@
 .closeBtn {
   cursor: pointer;
 }
+
+.relationContainer {
+  overflow-x: auto;
+}
+
+.relationPreview {
+  width: 150px;
+  height: 150px;
+
+  object-fit: cover;
+
+  transition: 0.3s;
+}
+
+.relationPreview:hover {
+  filter: grayscale(75%);
+}

@@ -1,4 +1,4 @@
-<div class="w-100 h-100 p-3 bg-white rounded-3">
+<div class="w-100 h-100 p-3 bg-white rounded-3 overflow-auto">
   <div class="d-flex justify-content-between">
     <h2 class="fs-4">{{ artwork.title }}</h2>
     <div class="pt-1 ps-2">
@@ -9,4 +9,58 @@
   <p>Künstler: {{ artwork.artist }}</p>
   <p>Art des Werks: {{ artwork.category }}</p>
   <p>Besitzer: {{ artwork.owner }}</p>
+
+  <p>
+    <a
+      class="btn btn-outline-primary w-100"
+      [href]="consts.cdaBaseUrl + artwork.inventoryNumber"
+      target="_blank"
+      >Weitere Informationen</a
+    >
+  </p>
+
+  <div *ngIf="partOfWork[0]">
+    <h3 class="fs-5">In gleicher Werkgruppe</h3>
+    <div class="relationContainer w-100 d-flex">
+      <a
+        *ngFor="let pow of partOfWork"
+        [href]="consts.cdaBaseUrl + pow.inventoryNumber"
+        target="_blank"
+        ><img
+          class="relationPreview rounded-3 me-2"
+          [src]="pow.preview"
+          [alt]="pow.title"
+      /></a>
+    </div>
+  </div>
+
+  <div *ngIf="belongsTo[0]">
+    <h3 class="fs-5">Zugehörige Werke</h3>
+    <div class="relationContainer w-100 d-flex">
+      <a
+        *ngFor="let bt of belongsTo"
+        [href]="consts.cdaBaseUrl + bt.inventoryNumber"
+        target="_blank"
+        ><img
+          class="relationPreview rounded-3 me-2"
+          [src]="bt.preview"
+          [alt]="bt.title"
+      /></a>
+    </div>
+  </div>
+
+  <div *ngIf="similarToOrRelatedInContentTo[0]">
+    <h3 class="fs-5">Ähnliche Werke</h3>
+    <div class="relationContainer w-100 d-flex">
+      <a
+        *ngFor="let storict of similarToOrRelatedInContentTo"
+        [href]="consts.cdaBaseUrl + storict.inventoryNumber"
+        target="_blank"
+        ><img
+          class="relationPreview rounded-3 me-2"
+          [src]="storict.preview"
+          [alt]="storict.title"
+      /></a>
+    </div>
+  </div>
 </div>
