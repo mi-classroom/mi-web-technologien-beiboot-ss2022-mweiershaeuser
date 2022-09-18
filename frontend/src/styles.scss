@@ -1,3 +1,5 @@
+@import "src/fonts";
+
 @import "src/theme";
 
 @import "~bootstrap/scss/bootstrap";
@@ -7,7 +9,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "IBMPlexSans", sans-serif;
 }
 
 html,
