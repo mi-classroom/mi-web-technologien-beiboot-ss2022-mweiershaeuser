@@ -4,9 +4,15 @@
 
     <ngt-ambient-light [intensity]="0.5"></ngt-ambient-light>
 
-    <ngt-mesh [position]="[0, -1, (artworks.length * 5 + 10) / -2]">
+    <ngt-mesh
+      [position]="[
+        consts.xStart,
+        consts.yStart,
+        (artworks.length * consts.artworkDistance + 10) / -2
+      ]"
+    >
       <ngt-box-geometry
-        [args]="[0.01, 0.01, artworks.length * 5 + 20]"
+        [args]="[0.01, 0.01, artworks.length * consts.artworkDistance + 20]"
       ></ngt-box-geometry>
       <ngt-mesh-standard-material></ngt-mesh-standard-material>
     </ngt-mesh>
@@ -14,17 +20,7 @@
     <ng-container *ngFor="let artwork of artworks; let i = index">
       <app-masterpiece
         [artwork]="artwork"
-        [position]="[
-          artwork.width / 100 / 2,
-          artwork.height / 100 / 2 - 1,
-          -i * 5
-        ]"
-        [yearPosition]="[-0.5, -0.9, -i * 5]"
-        [infoPosition]="[
-          artwork.width / 100 + 1.5,
-          artwork.height / 100 / 2 - 1,
-          -i * 5
-        ]"
+        [posZ]="-i * consts.artworkDistance"
         [showYear]="i === 0 ? true : artwork.date > artworks[i - 1].date"
       ></app-masterpiece>
     </ng-container>

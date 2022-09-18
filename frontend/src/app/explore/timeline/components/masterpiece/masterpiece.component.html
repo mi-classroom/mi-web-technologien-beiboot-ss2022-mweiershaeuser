@@ -1,6 +1,6 @@
 <ngt-soba-text
   *ngIf="showYear"
-  [position]="yearPosition"
+  [position]="[consts.xStart - 0.5, consts.yStart + 0.1, posZ]"
   [text]="artwork.date + ''"
   color="white"
   fontSize="0.2"
@@ -8,12 +8,15 @@
 ></ngt-soba-text>
 
 <ngt-mesh
-  [position]="position"
-  (pointerenter)="showInfo = true"
-  (pointerleave)="showInfo = false"
+  [position]="positionVector"
+  (pointerenter)="artworkGrowFactor = 2"
+  (pointerleave)="artworkGrowFactor = 1"
 >
   <ngt-plane-geometry
-    [args]="[artwork.width / 100, artwork.height / 100]"
+    [args]="[
+      (artwork.width / 100) * artworkGrowFactor,
+      (artwork.height / 100) * artworkGrowFactor
+    ]"
   ></ngt-plane-geometry>
   <ngt-mesh-standard-material
     [side]="side"
@@ -23,7 +26,7 @@
 
 <ngt-soba-text
   *ngIf="showInfo"
-  [position]="infoPosition"
+  [position]="[artwork.width / 100 + 1.5, artwork.height / 100 / 2 - 1, posZ]"
   [text]="artworkInfo"
   color="white"
   fontSize="0.1"

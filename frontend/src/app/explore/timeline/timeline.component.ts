@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import Artwork from '../models/artwork.model';
 import { MasterpiecesApiService } from '../services/masterpieces/masterpieces.api.service';
+import * as constants from './constants';
 
 @Component({
   selector: 'app-timeline',
@@ -9,6 +10,8 @@ import { MasterpiecesApiService } from '../services/masterpieces/masterpieces.ap
   styleUrls: ['./timeline.component.scss'],
 })
 export class TimelineComponent implements OnInit {
+  consts = constants;
+
   artworks: Artwork[] = [];
   error: boolean = false;
 
