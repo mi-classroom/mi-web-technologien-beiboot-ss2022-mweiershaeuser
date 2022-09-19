@@ -8,13 +8,41 @@
       [position]="[
         consts.xStart,
         consts.yStart,
-        (artworks.length * consts.artworkDistance + 10) / -2
+        (artworks.length * consts.artworkDistance +
+          consts.additionalTimelineLength / 2) /
+          -2
       ]"
     >
       <ngt-box-geometry
-        [args]="[0.01, 0.01, artworks.length * consts.artworkDistance + 20]"
+        [args]="[
+          0.01,
+          0.01,
+          artworks.length * consts.artworkDistance +
+            consts.additionalTimelineLength
+        ]"
       ></ngt-box-geometry>
       <ngt-mesh-standard-material></ngt-mesh-standard-material>
+    </ngt-mesh>
+
+    <ngt-mesh
+      *ngIf="highlightMode"
+      [position]="[
+        consts.xStart + this.consts.highlightDistance,
+        consts.yStart,
+        (artworks.length * consts.artworkDistance +
+          consts.additionalTimelineLength / 2) /
+          -2
+      ]"
+    >
+      <ngt-box-geometry
+        [args]="[
+          0.01,
+          0.01,
+          artworks.length * consts.artworkDistance +
+            consts.additionalTimelineLength
+        ]"
+      ></ngt-box-geometry>
+      <ngt-mesh-standard-material color="#fc0"></ngt-mesh-standard-material>
     </ngt-mesh>
 
     <ng-container *ngFor="let artwork of artworks; let i = index">
@@ -22,8 +50,6 @@
         [artwork]="artwork"
         [posZ]="-i * consts.artworkDistance"
         [showYear]="i === 0 ? true : artwork.date > artworks[i - 1].date"
-        [artworkPicked]="pickedArtwork === artwork"
-        (onArtworkPicked)="pickedArtwork = artwork"
       ></app-masterpiece>
     </ng-container>
 
@@ -34,10 +60,7 @@
   </ngt-canvas>
 
   <app-masterpiece-details
-    *ngIf="pickedArtwork"
+    *ngIf="artworkPicked"
     class="details"
-    [artwork]="pickedArtwork"
-    [artworks]="artworks"
-    (close)="pickedArtwork = undefined"
   ></app-masterpiece-details>
 </div>

@@ -1,26 +1,43 @@
 <div class="w-100 h-100 p-3 bg-white rounded-3 overflow-auto">
   <div class="d-flex justify-content-between">
-    <h2 class="fs-4">{{ artwork.title }}</h2>
+    <h2 class="fs-4">{{ artwork?.title }}</h2>
     <div class="pt-1 ps-2">
-      <i class="closeBtn bi bi-x-lg" (click)="onClose()"></i>
+      <i class="iconBtn bi bi-x-lg" (click)="onClose()"></i>
     </div>
   </div>
-  <p>Datierung: {{ artwork.date }}</p>
-  <p>Künstler: {{ artwork.artist }}</p>
-  <p>Art des Werks: {{ artwork.category }}</p>
-  <p>Besitzer: {{ artwork.owner }}</p>
+  <p>Datierung: {{ artwork?.date }}</p>
+  <p>Künstler: {{ artwork?.artist }}</p>
+  <p>Art des Werks: {{ artwork?.category }}</p>
+  <p>Besitzer: {{ artwork?.owner }}</p>
 
   <p>
     <a
       class="btn btn-outline-primary w-100"
-      [href]="consts.cdaBaseUrl + artwork.inventoryNumber"
+      [href]="consts.cdaBaseUrl + artwork?.inventoryNumber"
       target="_blank"
       >Weitere Informationen</a
     >
   </p>
 
   <div *ngIf="partOfWork[0]">
-    <h3 class="fs-5">In gleicher Werkgruppe</h3>
+    <div class="d-flex justify-content-between">
+      <h3 class="fs-5">In gleicher Werkgruppe</h3>
+      <div class="ps-2">
+        <i
+          class="iconBtn bi"
+          [ngClass]="{
+            'bi-eye': !highlightedArtworks[0],
+            'bi-eye-slash': highlightedArtworks[0]
+          }"
+          (click)="
+            highlightedArtworks[0]
+              ? removeHighlights()
+              : addHighlights(partOfWork)
+          "
+        ></i>
+      </div>
+    </div>
+
     <div class="relationContainer w-100 d-flex">
       <a
         *ngFor="let pow of partOfWork"
@@ -35,7 +52,24 @@
   </div>
 
   <div *ngIf="belongsTo[0]">
-    <h3 class="fs-5">Zugehörige Werke</h3>
+    <div class="d-flex justify-content-between">
+      <h3 class="fs-5">Zugehörige Werke</h3>
+      <div class="ps-2">
+        <i
+          class="iconBtn bi"
+          [ngClass]="{
+            'bi-eye': !highlightedArtworks[0],
+            'bi-eye-slash': highlightedArtworks[0]
+          }"
+          (click)="
+            highlightedArtworks[0]
+              ? removeHighlights()
+              : addHighlights(belongsTo)
+          "
+        ></i>
+      </div>
+    </div>
+
     <div class="relationContainer w-100 d-flex">
       <a
         *ngFor="let bt of belongsTo"
@@ -50,7 +84,24 @@
   </div>
 
   <div *ngIf="similarToOrRelatedInContentTo[0]">
-    <h3 class="fs-5">Ähnliche Werke</h3>
+    <div class="d-flex justify-content-between">
+      <h3 class="fs-5">Ähnliche Werke</h3>
+      <div class="ps-2">
+        <i
+          class="iconBtn bi"
+          [ngClass]="{
+            'bi-eye': !highlightedArtworks[0],
+            'bi-eye-slash': highlightedArtworks[0]
+          }"
+          (click)="
+            highlightedArtworks[0]
+              ? removeHighlights()
+              : addHighlights(partOfWork)
+          "
+        ></i>
+      </div>
+    </div>
+
     <div class="relationContainer w-100 d-flex">
       <a
         *ngFor="let storict of similarToOrRelatedInContentTo"

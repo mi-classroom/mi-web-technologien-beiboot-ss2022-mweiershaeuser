@@ -1,37 +1,69 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import Artwork from 'src/app/explore/models/artwork.model';
 import * as constants from '../../constants';
+import { ArtworksService } from '../../services/artworks/artworks.service';
 
 @Component({
   selector: 'app-masterpiece-details',
   templateUrl: './masterpiece-details.component.html',
   styleUrls: ['./masterpiece-details.component.scss'],
 })
-export class MasterpieceDetailsComponent implements OnChanges {
+export class MasterpieceDetailsComponent implements OnInit, OnDestroy {
   consts = constants;
 
-  @Input() artwork!: Artwork;
-  @Input() artworks!: Artwork[];
-  @Output() close: EventEmitter<void> = new EventEmitter();
+  artwork?: Artwork;
+  artworks: Artwork[] = [];
+
+  highlightedArtworks: string[] = [];
 
   partOfWork: Artwork[] = [];
   belongsTo: Artwork[] = [];
   similarToOrRelatedInContentTo: Artwork[] = [];
 
-  constructor() {}
+  unsubscribe = new Subject<void>();
 
-  ngOnChanges(): void {
-    this.getRelations();
+  constructor(private artworksService: ArtworksService) {}
+
+  ngOnInit(): void {
+    this.artworksService.pickedArtwork
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (pickedArtwork) => {
+          this.artwork = pickedArtwork;
+          this.artworksService.highlightedArtworks.next([]);
+          this.getRelations();
+        },
+      });
+
+    this.artworksService.artworks.pipe(takeUntil(this.unsubscribe)).subscribe({
+      next: (artworks) => {
+        this.artworks = artworks;
+        this.artworksService.highlightedArtworks.next([]);
+        this.getRelations();
+      },
+    });
+
+    this.artworksService.highlightedArtworks
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (highlightedArtworks) => {
+          this.highlightedArtworks = highlightedArtworks;
+        },
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   getRelations() {
-    this.artwork.relations.forEach((relation) => {
+    this.partOfWork = [];
+    this.belongsTo = [];
+    this.similarToOrRelatedInContentTo = [];
+
+    this.artwork?.relations.forEach((relation) => {
       let relationArtwork;
       switch (relation.type) {
         case 'PART_OF_WORK':
@@ -73,7 +105,25 @@ export class MasterpieceDetailsComponent implements OnChanges {
     });
   }
 
+  addHighlights(relations: Artwork[]) {
+    let highlights: string[];
+
+    if (this.artwork) {
+      highlights = [this.artwork.inventoryNumber];
+    } else {
+      highlights = [];
+    }
+
+    relations.forEach((r) => highlights.push(r.inventoryNumber));
+    this.artworksService.highlightedArtworks.next(highlights);
+  }
+
+  removeHighlights() {
+    this.artworksService.highlightedArtworks.next([]);
+  }
+
   onClose() {
-    this.close.emit();
+    this.removeHighlights();
+    this.artworksService.pickedArtwork.next(undefined);
   }
 }

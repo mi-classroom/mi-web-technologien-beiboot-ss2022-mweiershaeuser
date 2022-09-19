@@ -1,10 +1,18 @@
 import { NgtVector3 } from '@angular-three/core';
 import { NgtTextureLoader } from '@angular-three/soba/loaders';
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  Component,
+  Input,
+  Output,
+  OnInit,
+  EventEmitter,
+  OnDestroy,
+} from '@angular/core';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import Artwork from 'src/app/explore/models/artwork.model';
 import { Texture, DoubleSide } from 'three';
 import * as constants from '../../constants';
+import { ArtworksService } from '../../services/artworks/artworks.service';
 
 @Component({
   selector: 'app-masterpiece',
@@ -12,24 +20,16 @@ import * as constants from '../../constants';
   styleUrls: ['./masterpiece.component.scss'],
   providers: [NgtTextureLoader],
 })
-export class MasterpieceComponent implements OnInit {
+export class MasterpieceComponent implements OnInit, OnDestroy {
   consts = constants;
 
   @Input() posZ!: number;
   @Input() artwork!: Artwork;
   @Input() showYear = true;
 
-  _artworkPicked = false;
+  isHighlighted = false;
 
-  get artworkPicked(): boolean {
-    return this._artworkPicked;
-  }
-  @Input() set artworkPicked(aP: boolean) {
-    this._artworkPicked = aP;
-    if (!aP) {
-      this.artworkGrowFactor = 1;
-    }
-  }
+  artworkPicked = false;
 
   @Output() onArtworkPicked: EventEmitter<void> = new EventEmitter();
 
@@ -39,7 +39,12 @@ export class MasterpieceComponent implements OnInit {
 
   readonly side = DoubleSide;
 
-  constructor(private textureLoader: NgtTextureLoader) {}
+  unsubscribe = new Subject<void>();
+
+  constructor(
+    private textureLoader: NgtTextureLoader,
+    private artworksService: ArtworksService
+  ) {}
 
   ngOnInit(): void {
     this.texture$ = this.textureLoader.load(
@@ -48,11 +53,38 @@ export class MasterpieceComponent implements OnInit {
         'data-proxy/image.php?subpath='
       )
     );
+
+    this.artworksService.highlightedArtworks
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (highlightedArtworks) => {
+          this.isHighlighted = highlightedArtworks.includes(
+            this.artwork.inventoryNumber
+          );
+        },
+      });
+
+    this.artworksService.pickedArtwork
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (pickedArtwork) => {
+          this.artworkPicked =
+            pickedArtwork?.inventoryNumber === this.artwork.inventoryNumber;
+
+          this.artworkPicked
+            ? (this.artworkGrowFactor = 2)
+            : (this.artworkGrowFactor = 1);
+        },
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   pickArtwork() {
-    this.artworkGrowFactor = 2;
-    this.onArtworkPicked.emit();
+    this.artworksService.pickedArtwork.next(this.artwork);
   }
 
   onPointerEnter() {
@@ -68,7 +100,8 @@ export class MasterpieceComponent implements OnInit {
   get positionVector() {
     return [
       this.consts.xStart +
-        (this.artwork.width / 100 / 2) * this.artworkGrowFactor,
+        (this.artwork.width / 100 / 2) * this.artworkGrowFactor +
+        (this.isHighlighted ? this.consts.highlightDistance : 0),
       this.consts.yStart +
         (this.artwork.height / 100 / 2) * this.artworkGrowFactor,
       this.consts.zStart + this.posZ,
