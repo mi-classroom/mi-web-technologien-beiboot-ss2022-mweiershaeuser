@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import * as constants from '../../constants';
 import Artwork from 'src/app/explore/models/artwork.model';
 
 @Component({
@@ -7,5 +8,7 @@ import Artwork from 'src/app/explore/models/artwork.model';
   styleUrls: ['./masterpiece-preview.component.scss'],
 })
 export class MasterpiecePreviewComponent {
+  consts = constants;
+
   @Input() artwork?: Artwork;
 }
