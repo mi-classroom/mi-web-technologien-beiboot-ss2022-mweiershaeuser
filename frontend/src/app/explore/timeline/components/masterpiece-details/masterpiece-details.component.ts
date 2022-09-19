@@ -122,6 +122,17 @@ export class MasterpieceDetailsComponent implements OnInit, OnDestroy {
     this.artworksService.highlightedArtworks.next([]);
   }
 
+  navigateToArtwork(artwork: Artwork) {
+    const artworkIndex = this.artworks.findIndex(
+      (a) => a.inventoryNumber === artwork.inventoryNumber
+    );
+    this.artworksService.cameraPosition.next([
+      0,
+      0,
+      constants.cameraDistance - artworkIndex * constants.artworkDistance,
+    ]);
+  }
+
   onClose() {
     this.removeHighlights();
     this.artworksService.pickedArtwork.next(undefined);

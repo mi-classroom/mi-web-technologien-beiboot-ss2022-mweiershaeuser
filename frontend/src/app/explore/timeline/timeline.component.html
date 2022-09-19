@@ -1,5 +1,10 @@
 <div class="flex-grow-1 d-flex flex-column header-space">
-  <ngt-canvas class="flex-grow-1">
+  <ngt-canvas
+    *ngIf="canvasEnabled; else loading"
+    class="flex-grow-1"
+    [camera]="{ position: cameraPosition }"
+    [lookAt]="[0, 0, -1000]"
+  >
     <ngt-color attach="background" color="#666"></ngt-color>
 
     <ngt-ambient-light [intensity]="0.5"></ngt-ambient-light>
@@ -58,6 +63,14 @@
       [movementSpeed]="20"
     ></ngt-soba-first-person-controls>
   </ngt-canvas>
+
+  <ng-template #loading>
+    <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+      <div class="spinner-grow text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </ng-template>
 
   <app-masterpiece-details
     *ngIf="artworkPicked"

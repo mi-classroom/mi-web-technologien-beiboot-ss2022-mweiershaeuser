@@ -39,15 +39,24 @@
     </div>
 
     <div class="relationContainer w-100 d-flex">
-      <a
-        *ngFor="let pow of partOfWork"
-        [href]="consts.cdaBaseUrl + pow.inventoryNumber"
-        target="_blank"
-        ><img
-          class="relationPreview rounded-3 me-2"
+      <div *ngFor="let pow of partOfWork" class="relationPreviewWrapper me-2">
+        <img
+          class="relationPreview rounded-3"
           [src]="pow.preview"
           [alt]="pow.title"
-      /></a>
+        />
+        <div
+          class="relationPreviewActions justify-content-around align-items-center rounded-3"
+        >
+          <i
+            class="iconBtn bi bi-bullseye"
+            (click)="navigateToArtwork(pow)"
+          ></i>
+          <a [href]="consts.cdaBaseUrl + pow.inventoryNumber" target="_blank"
+            ><i class="iconBtn bi bi-info-circle"></i
+          ></a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -71,15 +80,21 @@
     </div>
 
     <div class="relationContainer w-100 d-flex">
-      <a
-        *ngFor="let bt of belongsTo"
-        [href]="consts.cdaBaseUrl + bt.inventoryNumber"
-        target="_blank"
-        ><img
-          class="relationPreview rounded-3 me-2"
+      <div *ngFor="let bt of belongsTo" class="relationPreviewWrapper me-2">
+        <img
+          class="relationPreview rounded-3"
           [src]="bt.preview"
           [alt]="bt.title"
-      /></a>
+        />
+        <div
+          class="relationPreviewActions justify-content-around align-items-center rounded-3"
+        >
+          <i class="iconBtn bi bi-bullseye" (click)="navigateToArtwork(bt)"></i>
+          <a [href]="consts.cdaBaseUrl + bt.inventoryNumber" target="_blank"
+            ><i class="iconBtn bi bi-info-circle"></i
+          ></a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -103,15 +118,29 @@
     </div>
 
     <div class="relationContainer w-100 d-flex">
-      <a
+      <div
         *ngFor="let storict of similarToOrRelatedInContentTo"
-        [href]="consts.cdaBaseUrl + storict.inventoryNumber"
-        target="_blank"
-        ><img
-          class="relationPreview rounded-3 me-2"
+        class="relationPreviewWrapper me-2"
+      >
+        <img
+          class="relationPreview rounded-3"
           [src]="storict.preview"
           [alt]="storict.title"
-      /></a>
+        />
+        <div
+          class="relationPreviewActions justify-content-around align-items-center rounded-3"
+        >
+          <i
+            class="iconBtn bi bi-bullseye"
+            (click)="navigateToArtwork(storict)"
+          ></i>
+          <a
+            [href]="consts.cdaBaseUrl + storict.inventoryNumber"
+            target="_blank"
+            ><i class="iconBtn bi bi-info-circle"></i
+          ></a>
+        </div>
+      </div>
     </div>
   </div>
 </div>

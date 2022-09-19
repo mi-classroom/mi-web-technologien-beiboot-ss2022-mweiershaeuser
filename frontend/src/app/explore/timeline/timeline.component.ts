@@ -1,3 +1,4 @@
+import { NgtVector3 } from '@angular-three/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, take, takeUntil } from 'rxjs';
 import Artwork from '../models/artwork.model';
@@ -12,6 +13,9 @@ import { ArtworksService } from './services/artworks/artworks.service';
 })
 export class TimelineComponent implements OnInit, OnDestroy {
   consts = constants;
+
+  canvasEnabled = true;
+  cameraPosition: NgtVector3 = [0, 0, 5];
 
   artworks: Artwork[] = [];
   artworkPicked = false;
@@ -52,6 +56,18 @@ export class TimelineComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (highlightedArtworks) => {
           this.highlightMode = highlightedArtworks.length > 0;
+        },
+      });
+
+    this.artworksService.cameraPosition
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (cameraPosition) => {
+          this.cameraPosition = cameraPosition;
+          this.canvasEnabled = false;
+          setTimeout(() => {
+            this.canvasEnabled = true;
+          }, 500);
         },
       });
 
