@@ -17,12 +17,21 @@ import { NgtSobaTextModule } from '@angular-three/soba/abstractions';
 import { MasterpieceComponent } from './components/masterpiece/masterpiece.component';
 import { MasterpieceDetailsComponent } from './components/masterpiece-details/masterpiece-details.component';
 import { HelpComponent } from './components/help/help.component';
+import { SearchComponent } from './components/search/search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [TimelineComponent, MasterpieceComponent, MasterpieceDetailsComponent, HelpComponent],
+  declarations: [
+    TimelineComponent,
+    MasterpieceComponent,
+    MasterpieceDetailsComponent,
+    HelpComponent,
+    SearchComponent,
+  ],
   imports: [
     CommonModule,
     TimelineRoutingModule,
+    FormsModule,
     NgtCanvasModule,
     NgtColorAttributeModule,
     NgtAmbientLightModule,

@@ -23,6 +23,7 @@ export class TimelineComponent implements OnInit, OnDestroy {
   highlightMode = false;
 
   help = false;
+  search = false;
   error = false;
 
   unsubscribe = new Subject<void>();

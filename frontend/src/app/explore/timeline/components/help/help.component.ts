@@ -6,7 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./help.component.scss'],
 })
 export class HelpComponent {
-  @Output() closeHelp: EventEmitter<void> = new EventEmitter();
+  @Output() close: EventEmitter<void> = new EventEmitter();
 
   constructor() {}
 }

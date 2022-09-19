@@ -77,7 +77,15 @@
     class="details"
   ></app-masterpiece-details>
 
-  <i class="helpBtn iconBtn bi bi-question-circle" (click)="help = true"></i>
+  <div class="actionBtns d-flex">
+    <i class="iconBtn bi bi-question-circle me-3" (click)="help = true"></i>
+    <i class="iconBtn bi bi-search me-3" (click)="search = true"></i>
+  </div>
 
-  <app-help *ngIf="help" class="helpBox" (closeHelp)="help = false"></app-help>
+  <app-help *ngIf="help" id="helpBox" (close)="help = false"></app-help>
+  <app-search
+    *ngIf="search"
+    id="searchBox"
+    (close)="search = false"
+  ></app-search>
 </div>
