@@ -18,7 +18,8 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
   highlightMode = false;
 
-  error: boolean = false;
+  help = false;
+  error = false;
 
   unsubscribe = new Subject<void>();
 

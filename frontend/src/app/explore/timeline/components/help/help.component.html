@@ -1,0 +1,35 @@
+<div class="w-100 h-100 p-3 bg-white rounded-3 overflow-auto">
+  <div class="d-flex justify-content-between">
+    <h2 class="fs-4">Hilfe</h2>
+    <div class="pt-1 ps-2">
+      <i class="iconBtn bi bi-x-lg" (click)="closeHelp.emit()"></i>
+    </div>
+  </div>
+
+  <h3 class="fs-5">Steuerung</h3>
+  <ul>
+    <li>Vor, Zurück, Rechts & Links: WASD oder Pfeiltasten</li>
+    <li>Hoch: R</li>
+    <li>Runter: F</li>
+  </ul>
+
+  <h3 class="fs-5">Werke und Informationen</h3>
+  <p>
+    Zu jedem Werk stehen Informationen zur Verfügung. Mit dem Werk kann wie
+    folgt interagiert werden:
+  </p>
+  <ul>
+    <li>Hover: Vergrößern des Werkes</li>
+    <li>Klick: Öffnen der Detailansicht</li>
+  </ul>
+
+  <h3 class="fs-5">Relationen</h3>
+  <p>
+    In der Detailansicht jedes Werks werden verfügbare Relationen angezeigt.
+    Jede Relationskategorie kann graphisch dargestellt werden, indem der
+    Relationsmodus über das Icon <i class="bi bi-eye"></i> aktiviert wird. Ist
+    der Relationsmodus nicht mehr gewünscht, kann dieser über das Icon
+    <i class="bi bi-eye-slash"></i> oder das Schließen der Detailansicht
+    deaktiviert werden.
+  </p>
+</div>

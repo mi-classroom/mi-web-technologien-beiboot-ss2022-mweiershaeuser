@@ -16,9 +16,10 @@ import { NgtSobaFirstPersonControlsModule } from '@angular-three/soba/controls';
 import { NgtSobaTextModule } from '@angular-three/soba/abstractions';
 import { MasterpieceComponent } from './components/masterpiece/masterpiece.component';
 import { MasterpieceDetailsComponent } from './components/masterpiece-details/masterpiece-details.component';
+import { HelpComponent } from './components/help/help.component';
 
 @NgModule({
-  declarations: [TimelineComponent, MasterpieceComponent, MasterpieceDetailsComponent],
+  declarations: [TimelineComponent, MasterpieceComponent, MasterpieceDetailsComponent, HelpComponent],
   imports: [
     CommonModule,
     TimelineRoutingModule,

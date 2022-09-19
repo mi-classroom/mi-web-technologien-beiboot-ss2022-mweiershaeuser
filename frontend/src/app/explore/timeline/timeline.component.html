@@ -63,4 +63,8 @@
     *ngIf="artworkPicked"
     class="details"
   ></app-masterpiece-details>
+
+  <i class="helpBtn iconBtn bi bi-question-circle" (click)="help = true"></i>
+
+  <app-help *ngIf="help" class="helpBox" (closeHelp)="help = false"></app-help>
 </div>

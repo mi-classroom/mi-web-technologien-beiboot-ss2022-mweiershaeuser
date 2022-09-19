@@ -21,3 +21,25 @@
 
   width: 35%;
 }
+
+.helpBtn {
+  position: absolute;
+
+  top: $header-space;
+  margin-top: 1rem;
+  left: 1rem;
+
+  color: white;
+  font-size: 30px;
+}
+
+.helpBox {
+  position: absolute;
+
+  top: $header-space;
+  margin-top: 1rem;
+  left: 1rem;
+  bottom: 1rem;
+
+  width: 35%;
+}
