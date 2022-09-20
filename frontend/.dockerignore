@@ -4,5 +4,3 @@ node_modules
 .angular
 coverage
 dist
-
-beiboot-frontend.tar
