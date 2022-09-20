@@ -7,8 +7,6 @@ Willkommen im Beiboot-Repo! Dieses Repository beinhaltet ein begleitendes Projek
 - [Projektorganisation](#projektorganisation)
 - [Getting started](#getting-started)
 - [Deployment](#deployment)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
 - [Dokumentation](#dokumentation)
 - [Beiboot Beschreibung](#beiboot-beschreibung)
 
@@ -60,7 +58,7 @@ Führe im Projektordner folgenden Befehl aus:
 docker-compose up -d
 ```
 
-Anschließend erreicht du die Anwendung wie folgt:
+Anschließend erreichst du die Anwendung wie folgt:
 
 Frontend: [http://localhost](http://localhost)
 
@@ -170,18 +168,24 @@ Da der Converter einmalig ausgeführt werden muss, wird das API-Token nun nicht 
 
 ## Deployment
 
-### Frontend
+Das Deployment erfolgt mit Docker über den Docker Hub, indem die Images der Anwendungen in folgende Repositories hochgeladen werden:
 
-Erreichbar unter: [https://beiboot.melvinweiershaeuser.de](https://beiboot.melvinweiershaeuser.de)
+- Frontend: [https://hub.docker.com/repository/docker/mweiershaeuser/beiboot-frontend](https://hub.docker.com/repository/docker/mweiershaeuser/beiboot-frontend)
+- Strapi: [https://hub.docker.com/repository/docker/mweiershaeuser/beiboot-backend](https://hub.docker.com/repository/docker/mweiershaeuser/beiboot-backend)
 
-Zum Deployment wird das Docker-Image gebaut, auf dem Server hochgeladen und gestartet.
+Die Images werden anschließend mit Docker Compose aus dem Docker Hub geladen und gestartet, sodass sie unter den folgenden Adressen erreichbar sind:
+
+- Frontend: [https://beiboot.melvinweiershaeuser.de](https://beiboot.melvinweiershaeuser.de)
+- Strapi: [https://beiboot-backend.melvinweiershaeuser.de](https://beiboot-backend.melvinweiershaeuser.de)
+
+Das Frontend kann alternativ auch über GitHub Pages bereitgestellt werden:
 
 <details>
-  <summary>Alternatives Deployment via GitHub Pages</summary>
+  <summary>Alternatives Frontend-Deployment via GitHub Pages</summary>
 
 Erreichbar unter: [https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser](https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser)
 
-Das Frontend kann alternativ über GitHub Pages bereitgestellt werden. Dazu wird der Ordner [docs](frontend/docs) des Branches gh-pages genutzt.
+Es wird der Ordner [docs](frontend/docs) des Branches gh-pages genutzt.
 
 Führe folgende Schritte im Ordner [frontend](frontend) für ein Deployment durch:
 
@@ -193,13 +197,62 @@ Committe und pushe anschließend den generierten docs Ordner auf dem gh-pages Br
 
 </details>
 
-### Backend
+Für den Deployment-Prozess mit Docker sind folgende Schritte durchzuführen:
 
-Erreichbar unter: [https://beiboot-backend.melvinweiershaeuser.de](https://beiboot-backend.melvinweiershaeuser.de)
+### Images bauen
+
+Führe jeweils die folgenden Befehle aus:
+
+**Frontend**
+
+```bash
+cd frontend
+docker build -f frontend.Dockerfile -t mweiershaeuser/beiboot-frontend .
+```
+
+**Backend**
 
 Bevor ein Image des Backends gebaut wird, muss die Datei ".dockerignore" im Ordner "backend" ausgetauscht werden. Entferne dazu vorübergehend die vorhandene Datei und benenne die Datei "production.dockerignore" in ".dockerignore" um. Denke daran, dies nach dem Build wieder rückgängig zu machen!
 
-Zum Deployment wird das Docker-Image gebaut, auf dem Server hochgeladen und gestartet. Anschließend wird/wurde Strapi analog zur [Anleitung für das lokale Setup](#3-projekt-konfigurieren) konfiguriert.
+```bash
+cd backend
+docker build -f backend.Dockerfile -t mweiershaeuser/beiboot-backend .
+```
+
+### Images in das Repository pushen
+
+Für diesen Schritt benötigst du Berechtigungen für das Repository und musst mit dem berechtigten Account bei deiner lokalen Docker-Instanz eingeloggt sein.
+
+**Frontend**
+
+```bash
+cd frontend
+docker push mweiershaeuser/beiboot-frontend
+```
+
+**Strapi**
+
+```bash
+cd backend
+docker push mweiershaeuser/beiboot-backend
+```
+
+### Anwendungen auf Server starten
+
+Wurden die Images im Repository hochgeladen, kannst du die Anwendungen auf einem Server starten. Kopiere dazu die Datei [docker-compose.production.yaml](docker-compose.production.yaml) in das Arbeitsverzeichnis auf deinem Server, lege außerdem falls noch nicht vorhanden die Ordner "db" und "assets/uploads" an und führe dort folgenden Befehl aus:
+
+```bash
+docker compose -f docker-compose.production.yaml up -d
+```
+
+Anschließend sollten die Docker-Container starten und auf folgenden Ports erreichbar sein:
+
+- Frontend: 8060
+- Backend: 8061
+
+Der Server kann nun entsprechend der individuellen Gegebenheiten konfiguriert werden, um die auf den Ports laufenden Anwendungen in der Regel mit einem Web-Server über Domain und TLS-Verschlüsselung erreichbar zu machen.
+
+Anschließend wird/wurde Strapi analog zur [Anleitung für das lokale Setup](#3-projekt-konfigurieren) konfiguriert.
 
 ## Dokumentation
 
