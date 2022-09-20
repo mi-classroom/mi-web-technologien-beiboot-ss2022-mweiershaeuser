@@ -8,7 +8,8 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "docker:save": "docker save -o beiboot-backend.tar beiboot/backend:latest"
   },
   "dependencies": {
     "@strapi/strapi": "4.1.9",

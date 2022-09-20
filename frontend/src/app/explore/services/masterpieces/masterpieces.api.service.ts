@@ -22,10 +22,14 @@ export class MasterpiecesApiService {
     });
   }
 
-  getMasterpieces(): Observable<Artwork[]> {
+  getMasterpieces(sortBy: string[]): Observable<Artwork[]> {
+    let sortQuery = '';
+    sortBy.forEach((sortAttribute, index) => {
+      sortQuery += `sort[${index}]=${sortAttribute}&`;
+    });
     return this.http
       .get<{ data: Array<{ attributes: Artwork }> }>(
-        `${this.baseUrl}/artworks?sort[0]=sortingId&pagination[page]=1&pagination[pageSize]=200`,
+        `${this.baseUrl}/artworks?${sortQuery}pagination[page]=1&pagination[pageSize]=200`,
         {
           headers: { Authorization: `Bearer ${this.accessToken}` },
         }
@@ -38,9 +42,12 @@ export class MasterpiecesApiService {
               title: dataObject.attributes.title,
               date: dataObject.attributes.date,
               category: dataObject.attributes.category,
+              artist: dataObject.attributes.artist,
               owner: dataObject.attributes.owner,
               preview: dataObject.attributes.preview,
               sortingId: dataObject.attributes.sortingId,
+              width: dataObject.attributes.width,
+              height: dataObject.attributes.height,
             });
           });
           return result;

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import Artwork from '../../models/artwork.model';
+import Artwork from 'src/app/explore/models/artwork.model';
 
 @Component({
   selector: 'app-masterpiece-preview',
