@@ -1,0 +1,9 @@
+@import "src/variables";
+
+header {
+  height: $header-space;
+}
+
+.title {
+  cursor: pointer;
+}

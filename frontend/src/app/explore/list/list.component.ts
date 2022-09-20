@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs';
-import Artwork from './models/artwork.model';
-import { MasterpiecesApiService } from './services/masterpieces/masterpieces.api.service';
+import Artwork from '../models/artwork.model';
+import { MasterpiecesApiService } from '../services/masterpieces/masterpieces.api.service';
 
 @Component({
-  selector: 'app-explore',
-  templateUrl: './explore.component.html',
-  styleUrls: ['./explore.component.scss'],
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss'],
 })
-export class ExploreComponent implements OnInit {
+export class ListComponent implements OnInit {
   artworks: Artwork[] = [];
   error: boolean = false;
 
@@ -20,7 +20,7 @@ export class ExploreComponent implements OnInit {
 
   getMasterpieces() {
     this.masterpieceApiService
-      .getMasterpieces()
+      .getMasterpieces(['sortingId'])
       .pipe(take(1))
       .subscribe({
         next: (artworks) => {

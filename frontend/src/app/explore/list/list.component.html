@@ -1,0 +1,14 @@
+<div class="flex-grow-1 header-space overflow-auto">
+  <div *ngIf="error" class="alert alert-danger">
+    Es ist ein Fehler aufgetreten. Bitte überprüfe Netzwerkverbindung und
+    Endpunkt.
+  </div>
+
+  <div class="container py-3">
+    <div class="row gx-3 gy-3">
+      <div *ngFor="let artwork of artworks" class="col-md-6 col-xl-4 col-xxl-3">
+        <app-masterpiece-preview [artwork]="artwork"></app-masterpiece-preview>
+      </div>
+    </div>
+  </div>
+</div>

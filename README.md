@@ -7,8 +7,6 @@ Willkommen im Beiboot-Repo! Dieses Repository beinhaltet ein begleitendes Projek
 - [Projektorganisation](#projektorganisation)
 - [Getting started](#getting-started)
 - [Deployment](#deployment)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
 - [Dokumentation](#dokumentation)
 - [Beiboot Beschreibung](#beiboot-beschreibung)
 
@@ -27,11 +25,29 @@ Der für das Projekt genutzte Workflow ist [hier](WORKFLOW.md) dokumentiert.
 
 Die folgende Anleitung führt durch das lokale Starten des Projekts und gibt dabei unterschiedliche technologische Optionen.
 
-### 1. Projekt aufsetzen
+### 1. Ressourcen einfügen
+
+Um das Backend starten zu können, wird eine Environment-Datei benötigt. Die benötigte Datei muss mit ".env" benannt sein und kann über folgenden Link bezogen werden:
+
+Backend-Environment: [https://th-koeln.sciebo.de/s/54wNHInDE8zvNtZ](https://th-koeln.sciebo.de/s/54wNHInDE8zvNtZ)
+
+Der Zugriff ist geschützt und mit dem Passwort, welches im Kurs Web Technologien 2022 vereinbart wurde (siehe Zugangsdaten im Miro-Board), zulässig. Die erworbene Datei muss im Ordner "backend" hinterlegt werden.
+
+### 1.1 Vorgefertigte Projektkonfiguration nutzen
+
+Das Projekt nutzt einen Converter, der relevante Daten aus der vorgegebenen JSON-Datei extrahiert und diese im vorgesehenen Datenformat an das Backend übergibt. Das Backend muss dazu beim Projekt-Setup konfiguriert und der Converter einmalig ausgeführt werden. Um den Aufwand beim Projekt-Setup optional zu minimieren, kann zu Demonstrationszwecken eine vorkonfigurierte Datenbank-Datei im Backend eingepflegt werden, bevor das [Projekt aufgesetzt](#2-projekt-aufsetzen) wird. Diese kann über folgenden Link bezogen werden:
+
+Backend-Environment: [https://th-koeln.sciebo.de/s/bj3PGumo0OE97YR](https://th-koeln.sciebo.de/s/bj3PGumo0OE97YR)
+
+Der Zugriff ist geschützt und mit dem Passwort, welches im Kurs Web Technologien 2022 vereinbart wurde (siehe Zugangsdaten im Miro-Board), zulässig. Die erworbene Datei muss im Ordner "backend/.tmp" hinterlegt werden und mit "data.db" benannt sein.
+
+Wird die Vorkonfiguration nicht genutzt ist es erforderlich, das Projekt nach dem [Aufsetzen](#2-projekt-aufsetzen) zu konfigurieren (siehe [Projekt konfigurieren](#3-projekt-konfigurieren))!
+
+### 2. Projekt aufsetzen
 
 Das Projekt kann nun entweder in containerisierter Form via Docker oder zur lokalen Entwicklung gestartet werden.
 
-<details>
+<details open="true">
   <summary>Docker</summary>
 
 Zum Starten mit Docker wird [Docker Desktop](https://www.docker.com/get-started/) benötigt.
@@ -42,13 +58,13 @@ Führe im Projektordner folgenden Befehl aus:
 docker-compose up -d
 ```
 
-Anschließend erreicht du die Anwendung wie folgt:
+Anschließend erreichst du die Anwendung wie folgt:
 
 Frontend: [http://localhost](http://localhost)
 
 Backend: [http://localhost:1337/admin](http://localhost:1337/admin)
 
-Fahre nun damit fort, das [Projekt zu konfigurieren](#2-projekt-konfigurieren).
+Sofern du keine [Vorkonfiguration](#11-vorgefertigte-projektkonfiguration-nutzen) genutzt hast, fahre nun damit fort, das [Projekt zu konfigurieren](#3-projekt-konfigurieren).
 
 </details>
 
@@ -99,7 +115,7 @@ Die Strapi Admin-Oberfläche ist nun im Browser unter [http://localhost:1337/adm
 
 </details>
 
-### 2. Projekt konfigurieren
+### 3. Projekt konfigurieren
 
 Das Projekt sollte nun lokal gestartet sein. Damit die Anwendung genutzt werden kann, müssen jedoch einige Konfigurationen eingerichtet und Daten transformiert werden.
 
@@ -127,11 +143,11 @@ npm install
 
 **Quelle einfügen**
 
-Beschaffe die vorgegebene JSON-Datei und füge sie in diesem Ordner ein. Sie sollte bei der Versionierung von Git ignoriert werden.
+Beschaffe die vorgegebene JSON-Datei und füge sie in diesem Ordner ein. Die Datei muss mit "cda-paintings-2022-04-22.de" benannt sein. Sie sollte bei der Versionierung von Git ignoriert werden.
 
 **Environment konfigurieren**
 
-Lege eine Datei ".env" an und setze die API-URL des Ziel-Backends (z. B. "http://localhost:1337") sowie das zuvor erzeugte API-Token. Auch diese Datei sollte bei der Versionierung von Git ignoriert werden.
+Lege eine Datei ".env" an und setze die API-URL des Ziel-Backends (z. B. "http://localhost:1337") sowie das zuvor erzeugte API-Token. Auch diese Datei sollte bei der Versionierung von Git ignoriert werden. Die Datei sollte wie folgt aussehen:
 
 ```
 BASE_URL="http://localhost:1337"
@@ -152,18 +168,24 @@ Da der Converter einmalig ausgeführt werden muss, wird das API-Token nun nicht 
 
 ## Deployment
 
-### Frontend
+Das Deployment erfolgt mit Docker über den Docker Hub, indem die Images der Anwendungen in folgende Repositories hochgeladen werden:
 
-Erreichbar unter: [https://beiboot.melvinweiershaeuser.de](https://beiboot.melvinweiershaeuser.de)
+- Frontend: [https://hub.docker.com/repository/docker/mweiershaeuser/beiboot-frontend](https://hub.docker.com/repository/docker/mweiershaeuser/beiboot-frontend)
+- Strapi: [https://hub.docker.com/repository/docker/mweiershaeuser/beiboot-backend](https://hub.docker.com/repository/docker/mweiershaeuser/beiboot-backend)
 
-Zum Deployment wird das Docker-Image gebaut, auf dem Server hochgeladen und gestartet.
+Die Images werden anschließend mit Docker Compose aus dem Docker Hub geladen und gestartet, sodass sie unter den folgenden Adressen erreichbar sind:
+
+- Frontend: [https://beiboot.melvinweiershaeuser.de](https://beiboot.melvinweiershaeuser.de)
+- Strapi: [https://beiboot-backend.melvinweiershaeuser.de](https://beiboot-backend.melvinweiershaeuser.de)
+
+Das Frontend kann alternativ auch über GitHub Pages bereitgestellt werden:
 
 <details>
-  <summary>Alternatives Deployment via GitHub Pages</summary>
+  <summary>Alternatives Frontend-Deployment via GitHub Pages</summary>
 
 Erreichbar unter: [https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser](https://mi-classroom.github.io/mi-web-technologien-beiboot-ss2022-mweiershaeuser)
 
-Das Frontend kann alternativ über GitHub Pages bereitgestellt werden. Dazu wird der Ordner [docs](frontend/docs) des Branches gh-pages genutzt.
+Es wird der Ordner [docs](frontend/docs) des Branches gh-pages genutzt.
 
 Führe folgende Schritte im Ordner [frontend](frontend) für ein Deployment durch:
 
@@ -175,11 +197,62 @@ Committe und pushe anschließend den generierten docs Ordner auf dem gh-pages Br
 
 </details>
 
-### Backend
+Für den Deployment-Prozess mit Docker sind folgende Schritte durchzuführen:
 
-Erreichbar unter: [https://beiboot-backend.melvinweiershaeuser.de](https://beiboot-backend.melvinweiershaeuser.de)
+### Images bauen
 
-Zum Deployment wird das Docker-Image gebaut, auf dem Server hochgeladen und gestartet. Anschließend wird/wurde Strapi analog zur [Anleitung für das lokalen Setup](#2-projekt-konfigurieren) konfiguriert.
+Führe jeweils die folgenden Befehle aus:
+
+**Frontend**
+
+```bash
+cd frontend
+docker build -f frontend.Dockerfile -t mweiershaeuser/beiboot-frontend .
+```
+
+**Backend**
+
+Bevor ein Image des Backends gebaut wird, muss die Datei ".dockerignore" im Ordner "backend" ausgetauscht werden. Entferne dazu vorübergehend die vorhandene Datei und benenne die Datei "production.dockerignore" in ".dockerignore" um. Denke daran, dies nach dem Build wieder rückgängig zu machen!
+
+```bash
+cd backend
+docker build -f backend.Dockerfile -t mweiershaeuser/beiboot-backend .
+```
+
+### Images in das Repository pushen
+
+Für diesen Schritt benötigst du Berechtigungen für das Repository und musst mit dem berechtigten Account bei deiner lokalen Docker-Instanz eingeloggt sein.
+
+**Frontend**
+
+```bash
+cd frontend
+docker push mweiershaeuser/beiboot-frontend
+```
+
+**Strapi**
+
+```bash
+cd backend
+docker push mweiershaeuser/beiboot-backend
+```
+
+### Anwendungen auf Server starten
+
+Wurden die Images im Repository hochgeladen, kannst du die Anwendungen auf einem Server starten. Kopiere dazu die Datei [docker-compose.production.yaml](docker-compose.production.yaml) in das Arbeitsverzeichnis auf deinem Server, lege außerdem falls noch nicht vorhanden die Ordner "db" und "assets/uploads" an und führe dort folgenden Befehl aus:
+
+```bash
+docker compose -f docker-compose.production.yaml up -d
+```
+
+Anschließend sollten die Docker-Container starten und auf folgenden Ports erreichbar sein:
+
+- Frontend: 8060
+- Backend: 8061
+
+Der Server kann nun entsprechend der individuellen Gegebenheiten konfiguriert werden, um die auf den Ports laufenden Anwendungen in der Regel mit einem Web-Server über Domain und TLS-Verschlüsselung erreichbar zu machen.
+
+Anschließend wird/wurde Strapi analog zur [Anleitung für das lokale Setup](#3-projekt-konfigurieren) konfiguriert.
 
 ## Dokumentation
 

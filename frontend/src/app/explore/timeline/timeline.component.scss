@@ -1,0 +1,56 @@
+@import "src/variables";
+
+:host {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.header-space {
+  padding-top: $header-space;
+}
+
+.details {
+  position: absolute;
+
+  top: $header-space;
+  margin-top: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+
+  width: 35%;
+}
+
+.actionBtns {
+  position: absolute;
+
+  top: $header-space;
+  margin-top: 1rem;
+  left: 1rem;
+
+  color: white;
+  font-size: 30px;
+}
+
+#helpBox {
+  position: absolute;
+
+  top: $header-space;
+  margin-top: 1rem;
+  left: 1rem;
+  bottom: 1rem;
+
+  width: 35%;
+}
+
+#searchBox {
+  position: absolute;
+
+  top: $header-space;
+  margin-top: 1rem;
+  left: 1rem;
+  bottom: 1rem;
+
+  width: 35%;
+}

@@ -1,0 +1,16 @@
+<div class="card">
+  <img [src]="artwork?.preview" [alt]="artwork?.title" class="card-img-top" />
+  <div class="card-body">
+    <h2 class="card-title fs-4">{{ artwork?.title }}</h2>
+    <p>Datierung: {{ artwork?.date }}</p>
+    <p>Künstler*in: {{ artwork?.artist }}</p>
+    <p>Art des Werks: {{ artwork?.category }}</p>
+    <p>Besitzer*in: {{ artwork?.owner }}</p>
+    <a
+      class="btn btn-primary w-100"
+      [href]="consts.cdaBaseUrl + artwork?.inventoryNumber"
+      target="_blank"
+      ><i class="bi bi-info-circle"></i> Weitere Informationen</a
+    >
+  </div>
+</div>

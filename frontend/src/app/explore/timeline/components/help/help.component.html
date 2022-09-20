@@ -1,0 +1,48 @@
+<div class="w-100 h-100 p-3 bg-white rounded-3 overflow-auto">
+  <div class="d-flex justify-content-between mb-3">
+    <h2 class="fs-4">Hilfe</h2>
+    <div class="pt-1 ps-2">
+      <i class="iconBtn bi bi-x-lg" (click)="close.emit()"></i>
+    </div>
+  </div>
+
+  <h3 class="fs-5">Steuerung</h3>
+  <ul>
+    <li>Vor, Zurück, Rechts & Links: WASD oder Pfeiltasten</li>
+    <li>Hoch: R</li>
+    <li>Runter: F</li>
+  </ul>
+
+  <h3 class="fs-5">Werke und Informationen</h3>
+  <p>
+    Zu jedem Werk stehen Informationen zur Verfügung. Mit dem Werk kann wie
+    folgt interagiert werden:
+  </p>
+  <ul>
+    <li>Hover: Vergrößern des Werkes</li>
+    <li>Klick: Öffnen der Detailansicht</li>
+  </ul>
+
+  <h3 class="fs-5">Relationen</h3>
+  <p>
+    In der Detailansicht jedes Werks werden verfügbare Relationen angezeigt.
+    Jede Relationskategorie kann durch Klick auf das entsprechende Symbol
+    grafisch dargestellt werden:
+  </p>
+  <ul>
+    <li><i class="bi bi-eye"></i> Relationsmodus aktivieren</li>
+    <li><i class="bi bi-eye-slash"></i> Relationsmodus deaktivieren</li>
+  </ul>
+  <p>
+    Durch Hovern über eine Relation stehen zudem weitere Optionen zur Verfügung,
+    welche durch einen Klick auf das jeweilige Symbol genutzt werden können.
+  </p>
+  <ul>
+    <li>
+      <i class="bi bi-bullseye"></i> Anzeige der Relation auf der Zeitleiste
+    </li>
+    <li>
+      <i class="bi bi-info-circle"></i> Öffnen des Cranach Digital Archive
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,26 @@
+<ngt-soba-text
+  *ngIf="showYear || isHighlighted"
+  [position]="positionYearVector"
+  [text]="artwork.date + ''"
+  color="white"
+  fontSize="0.3"
+  textAlign="right"
+></ngt-soba-text>
+
+<ngt-mesh
+  [position]="positionVector"
+  (pointerenter)="onPointerEnter()"
+  (pointerleave)="onPointerLeave()"
+  (pointerdown)="pickArtwork()"
+>
+  <ngt-plane-geometry
+    [args]="[
+      (artwork.width / 100) * artworkGrowFactor,
+      (artwork.height / 100) * artworkGrowFactor
+    ]"
+  ></ngt-plane-geometry>
+  <ngt-mesh-standard-material
+    [side]="side"
+    [map]="texture$ | async"
+  ></ngt-mesh-standard-material>
+</ngt-mesh>

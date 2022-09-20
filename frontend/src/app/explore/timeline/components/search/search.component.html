@@ -1,0 +1,26 @@
+<div class="w-100 h-100 p-3 bg-white rounded-3 overflow-auto">
+  <div class="d-flex justify-content-between mb-3">
+    <h2 class="fs-4">Suche</h2>
+    <div class="pt-1 ps-2">
+      <i class="iconBtn bi bi-x-lg" (click)="close.emit()"></i>
+    </div>
+  </div>
+
+  <input
+    type="text"
+    class="form-control mb-3"
+    id="searchInput"
+    [(ngModel)]="search"
+    (ngModelChange)="filter()"
+    placeholder="Nach Titel oder Datum suchen"
+  />
+
+  <div
+    *ngFor="let match of matches"
+    class="match d-flex align-items-center p-3"
+    (click)="navigateToArtwork(match)"
+  >
+    <img class="thumbnail me-3" [src]="match.preview" [alt]="match.title" />
+    <span>{{ match.title }}</span>
+  </div>
+</div>

@@ -1,3 +1,21 @@
-<div class="d-flex justify-content-center">
-  <h1>Cranach Explorer</h1>
-</div>
+<header
+  class="container d-flex justify-content-between align-items-center py-2"
+>
+  <h1 class="title text-primary m-0 fs-2" routerLink="/">Cranach Explorer</h1>
+  <div class="d-flex justify-content-end">
+    <button
+      class="btn ml-2 text-secondary"
+      routerLink="/explore/list"
+      routerLinkActive="btn-primary"
+    >
+      Liste
+    </button>
+    <button
+      class="btn ml-2 text-secondary"
+      routerLink="/explore/timeline"
+      routerLinkActive="btn-primary"
+    >
+      Zeitstrahl
+    </button>
+  </div>
+</header>

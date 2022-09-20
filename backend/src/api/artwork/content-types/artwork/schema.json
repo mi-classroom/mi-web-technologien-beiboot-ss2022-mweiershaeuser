@@ -12,13 +12,19 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "inventoryNumber": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
     },
     "date": {
-      "type": "string"
+      "type": "integer"
     },
     "category": {
+      "type": "string"
+    },
+    "artist": {
       "type": "string"
     },
     "owner": {
@@ -29,6 +35,15 @@
     },
     "sortingId": {
       "type": "string"
+    },
+    "width": {
+      "type": "float"
+    },
+    "height": {
+      "type": "float"
+    },
+    "relations": {
+      "type": "json"
     }
   }
 }
