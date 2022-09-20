@@ -1,0 +1,42 @@
+@import "src/theme";
+
+.relationContainer {
+  overflow-x: auto;
+}
+
+.relationPreviewWrapper {
+  position: relative;
+  transition: 0.5s;
+}
+
+.relationPreviewWrapper:hover .relationPreviewActions {
+  display: flex;
+}
+
+.relationPreview {
+  width: 150px;
+  height: 150px;
+
+  object-fit: cover;
+}
+
+.relationPreviewActions {
+  display: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: rgba(255, 204, 0, 0.75);
+}
+
+.relationPreviewActions i {
+  font-size: 30px;
+  color: map-get($theme-colors, "secondary");
+}
+
+.relationPreviewActions i:hover {
+  color: black;
+}
