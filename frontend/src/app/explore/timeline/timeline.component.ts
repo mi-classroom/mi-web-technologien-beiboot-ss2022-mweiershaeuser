@@ -19,12 +19,10 @@ export class TimelineComponent implements OnInit, OnDestroy {
 
   artworks: Artwork[] = [];
   artworkPicked = false;
-
   highlightMode = false;
 
   help = false;
   search = false;
-  error = false;
 
   unsubscribe = new Subject<void>();
 
@@ -87,10 +85,6 @@ export class TimelineComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (artworks) => {
           this.artworksService.artworks.next(artworks);
-          this.error = false;
-        },
-        error: () => {
-          this.error = true;
         },
       });
   }

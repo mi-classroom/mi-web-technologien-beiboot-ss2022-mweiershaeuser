@@ -1,5 +1,3 @@
-import { NgtVector3 } from '@angular-three/core';
-
 export const cdaBaseUrl = 'https://lucascranach.org/de/';
 
 export const xCameraStart = 1.5;
