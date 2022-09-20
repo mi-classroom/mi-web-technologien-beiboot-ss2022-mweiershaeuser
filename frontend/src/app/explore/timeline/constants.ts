@@ -2,11 +2,12 @@ import { NgtVector3 } from '@angular-three/core';
 
 export const cdaBaseUrl = 'https://lucascranach.org/de/';
 
-export const cameraDistance = 5;
-export const cameraPositionStart: NgtVector3 = [0, 0, cameraDistance];
+export const xCameraStart = 1.5;
+export const yCameraStart = 1;
+export const zCameraStart = 5;
 
-export const xStart = -1.5;
-export const yStart = -1;
+export const xStart = 0;
+export const yStart = 0;
 export const zStart = 0;
 
 export const additionalTimelineLength = 20;

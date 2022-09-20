@@ -13,9 +13,11 @@ export class ArtworksService {
   pickedArtwork = new ReplaySubject<Artwork | undefined>(1);
   highlightedArtworks = new BehaviorSubject<string[]>([]);
 
-  cameraPosition = new BehaviorSubject<NgtVector3>(
-    constants.cameraPositionStart
-  );
+  cameraPosition = new BehaviorSubject<NgtVector3>([
+    constants.xCameraStart,
+    constants.yCameraStart,
+    constants.zCameraStart,
+  ]);
 
   constructor() {}
 }

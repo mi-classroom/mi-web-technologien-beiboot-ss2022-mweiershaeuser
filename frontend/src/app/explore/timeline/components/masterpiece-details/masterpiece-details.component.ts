@@ -127,9 +127,12 @@ export class MasterpieceDetailsComponent implements OnInit, OnDestroy {
       (a) => a.inventoryNumber === artwork.inventoryNumber
     );
     this.artworksService.cameraPosition.next([
-      0,
-      0,
-      constants.cameraDistance - artworkIndex * constants.artworkDistance,
+      constants.xCameraStart +
+        (this.highlightedArtworks.includes(artwork.inventoryNumber)
+          ? constants.highlightDistance
+          : 0),
+      constants.yCameraStart,
+      constants.zCameraStart - artworkIndex * constants.artworkDistance,
     ]);
   }
 

@@ -1,9 +1,9 @@
 <ngt-soba-text
-  *ngIf="showYear"
-  [position]="[consts.xStart - 0.5, consts.yStart + 0.1, posZ]"
+  *ngIf="showYear || isHighlighted"
+  [position]="positionYearVector"
   [text]="artwork.date + ''"
   color="white"
-  fontSize="0.2"
+  fontSize="0.3"
   textAlign="right"
 ></ngt-soba-text>
 

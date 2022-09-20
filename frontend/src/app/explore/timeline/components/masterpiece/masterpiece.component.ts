@@ -21,8 +21,6 @@ import { ArtworksService } from '../../services/artworks/artworks.service';
   providers: [NgtTextureLoader],
 })
 export class MasterpieceComponent implements OnInit, OnDestroy {
-  consts = constants;
-
   @Input() posZ!: number;
   @Input() artwork!: Artwork;
   @Input() showYear = true;
@@ -99,12 +97,22 @@ export class MasterpieceComponent implements OnInit, OnDestroy {
 
   get positionVector() {
     return [
-      this.consts.xStart +
+      constants.xStart +
         (this.artwork.width / 100 / 2) * this.artworkGrowFactor +
-        (this.isHighlighted ? this.consts.highlightDistance : 0),
-      this.consts.yStart +
+        (this.isHighlighted ? constants.highlightDistance : 0),
+      constants.yStart +
         (this.artwork.height / 100 / 2) * this.artworkGrowFactor,
-      this.consts.zStart + this.posZ,
+      constants.zStart + this.posZ,
+    ] as NgtVector3;
+  }
+
+  get positionYearVector() {
+    return [
+      constants.xStart -
+        0.75 +
+        (this.isHighlighted ? constants.highlightDistance : 0),
+      constants.yStart + 0.1,
+      this.posZ,
     ] as NgtVector3;
   }
 }

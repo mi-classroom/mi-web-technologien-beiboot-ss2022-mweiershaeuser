@@ -11,6 +11,12 @@
   <p>Besitzer*in: {{ artwork?.owner }}</p>
 
   <p>
+    <a class="btn btn-primary w-100" (click)="navigateToArtwork(artwork!)">
+      <i class="bi bi-bullseye"></i> Zum Werk springen
+    </a>
+  </p>
+
+  <p>
     <a
       class="btn btn-primary w-100"
       [href]="consts.cdaBaseUrl + artwork?.inventoryNumber"

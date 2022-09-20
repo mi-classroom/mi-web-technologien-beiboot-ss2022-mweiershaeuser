@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   @Output() close: EventEmitter<void> = new EventEmitter();
 
   artworks: Artwork[] = [];
+  highlightedArtworks: string[] = [];
 
   search = '';
   matches: Artwork[] = [];
@@ -33,6 +34,14 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.artworks = artworks;
       },
     });
+
+    this.artworksService.highlightedArtworks
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe({
+        next: (highlightedArtworks) => {
+          this.highlightedArtworks = highlightedArtworks;
+        },
+      });
   }
 
   ngOnDestroy(): void {
@@ -53,9 +62,12 @@ export class SearchComponent implements OnInit, OnDestroy {
       (a) => a.inventoryNumber === artwork.inventoryNumber
     );
     this.artworksService.cameraPosition.next([
-      0,
-      0,
-      constants.cameraDistance - artworkIndex * constants.artworkDistance,
+      constants.xCameraStart +
+        (this.highlightedArtworks.includes(artwork.inventoryNumber)
+          ? constants.highlightDistance
+          : 0),
+      constants.yCameraStart,
+      constants.zCameraStart - artworkIndex * constants.artworkDistance,
     ]);
   }
 }
